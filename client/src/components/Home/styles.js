@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from "@mui/styles";
 
 
 const drawerWidth = 240;
@@ -13,6 +13,10 @@ export default makeStyles( (theme) => ({
             flexShrink: 0,
         },
     },
+        /*if(getUserId(history)) {
+            dispatch(getCharacter(userId, history));
+        }*/
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     appBar: {
         [theme.breakpoints.up('sm')]: {
             width: `calc(100% - ${drawerWidth}px)`,

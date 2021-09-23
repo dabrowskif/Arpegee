@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from "@mui/styles";
 
 export default makeStyles( (theme) => ({
     appBar: {
@@ -12,7 +12,7 @@ export default makeStyles( (theme) => ({
         alignItems: "center",
     },
     brandContainer__icon: {
-        padding: "5px 0 0 20px",
+        margin: "5px 0 0 5px",
         color: "inherit",
     },
     brandContainer__title: {
@@ -41,7 +41,6 @@ export default makeStyles( (theme) => ({
     navbar__menu__item: {
     },
     navbar__menu__icon: {
-        color: "inherit",
         display: "flex",
         [theme.breakpoints.up('md')]: {
             display: "none",

@@ -1,25 +1,25 @@
 import React, {useEffect, useState} from 'react';
-import {AppBar, Avatar, Icon, IconButton, SwipeableDrawer, Toolbar, Typography, useTheme
-} from "@material-ui/core";
 import decode from 'jwt-decode';
-import MenuIcon from "@material-ui/icons/Menu";
+import MenuIcon from '@mui/icons-material/Menu';
 
 import useStyles from './styles';
-import {Chat} from "@material-ui/icons";
 import {useDispatch} from "react-redux";
-import { LOGOUT } from "../../constants/actionTypes";
-import {useHistory, useLocation} from "react-router-dom";
+import {LOGOUT, LOGOUT_CHARACTER} from "../../constants/actionTypes";
+import {Link, useHistory, useLocation} from "react-router-dom";
 import Menu from "./Menu";
+import {AppBar, Avatar, IconButton, SwipeableDrawer, Toolbar, Typography} from "@mui/material";
+import {Chat} from "@mui/icons-material";
 
 const Navbar = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const location = useLocation();
-    const theme = useTheme();
-    const classes = useStyles(theme);
+    const classes = useStyles();
 
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
     const [isSidebarOpened, setIsSidebarOpened] = useState(false);
+
+
 
     const toggleDrawer = (isOpen) => (event) => {
         if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -28,29 +28,32 @@ const Navbar = () => {
         setIsSidebarOpened(isOpen);
     };
 
+
     const logout = () => {
-        if(isSidebarOpened) setIsSidebarOpened(false);
-        dispatch({ type: LOGOUT });
-        history.push('/auth');
         setUser(null);
+        setIsSidebarOpened(false);
+        dispatch({ type: LOGOUT });
+        dispatch({type: LOGOUT_CHARACTER});
+        history.push('/auth');
     };
 
     useEffect(() => {
+
         const token = user?.token;
 
         if(token) {
             const decodedToken = decode(token);
             if(decodedToken.exp * 1000 < new Date().getTime()) logout();
         }
-
         setUser(JSON.parse(localStorage.getItem('profile')))
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [location]);
 
     return (
         <AppBar className={classes.appBar}>
             <div className={classes.brandContainer}>
-                <Icon className={classes.brandContainer__icon}> <Chat/> </Icon>
-                <Typography variant="h6" className={classes.brandContainer__title}> Arpeegee </Typography>
+                <IconButton className={classes.brandContainer__icon} component={Link} to="/"> <Chat/> </IconButton>
+                <Typography variant="h6" className={classes.brandContainer__title}> Arpege </Typography>
                 {
                     user?.result
                     ? (

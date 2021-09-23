@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from "@mui/styles";
 
 export default makeStyles( (theme) => ({
     paper: {
@@ -9,7 +9,7 @@ export default makeStyles( (theme) => ({
     },
     avatar: {
         margin: theme.spacing(1),
-        backgroundColor: theme.palette.secondary.main,
+        backgroundColor: theme.palette.primary.main,
     },
     signTitle: {
         marginBottom: theme.spacing(1),
@@ -22,5 +22,9 @@ export default makeStyles( (theme) => ({
     },
     customSignIn: {
         margin: theme.spacing(2, 0, 1),
-    }
+    },
+    circularProgress: {
+        display: "flex",
+        margin: "auto",
+    },
 }));

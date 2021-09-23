@@ -1,7 +1,7 @@
 import React from 'react';
-import {ListItem, ListItemIcon, ListItemText} from "@material-ui/core";
 import {Link} from "react-router-dom";
 import useStyles from "./styles";
+import {ListItem, ListItemIcon, ListItemText} from "@mui/material";
 
 const Item = ({ text, to, className, onClick = null, icon}) => {
     const classes = useStyles();

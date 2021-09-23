@@ -1,4 +1,12 @@
-export const CREATE = 'CREATE';
+
 
 export const AUTH = 'AUTH';
 export const LOGOUT = 'LOGOUT';
+
+export const CREATE_CHARACTER = 'CREATE_CHARACTER';
+export const LOGOUT_CHARACTER = 'LOGOUT_CHARACTER';
+export const GET_CHARACTER = 'GET_CHARACTER';
+export const UPDATE_CHARACTER = 'UPDATE_CHARACTER';
+
+export const START_LOADING = 'START_LOADING';
+export const END_LOADING = 'END_LOADING';

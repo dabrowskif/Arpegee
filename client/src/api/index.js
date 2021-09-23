@@ -12,3 +12,7 @@ API.interceptors.request.use((req) => {
 
 export const signin = formData => API.post('/user/signin', formData);
 export const signup = formData => API.post('/user/signup', formData);
+
+export const createCharacter = formData => API.post('/character/create', formData);
+export const getCharacter = userId => API.post('/character/get', userId);
+export const updateCharacter = updatedCharacter => API.patch('/character/update', updatedCharacter);

@@ -4,6 +4,7 @@ import jwt from 'jsonwebtoken';
 
 export const signin = async (req, res) => {
     const { email, password } = req.body;
+    console.log(`Sign In ${email} ${password}`);
 
     try {
         const existingUser = await User.findOne({ email });
@@ -12,7 +13,7 @@ export const signin = async (req, res) => {
         const isPasswordCorrect = await bcrypt.compare(password, existingUser.password);
         if(!isPasswordCorrect) return res.status(400).json({ message: "Invalid credentials."});
 
-        const token = jwt.sign({ email: existingUser.email, id: existingUser._id }, 'test', { expiresIn: '1h' });
+        const token = jwt.sign({ email: existingUser.email, id: existingUser._id }, process.env.JWT_SECRET_KEY, { expiresIn: '1h' });
 
         res.status(200).json({ result: existingUser, token });
     } catch (error) {
@@ -22,6 +23,7 @@ export const signin = async (req, res) => {
 
 export const signup = async (req, res) => {
     const { email, password, confirmPassword, firstName, lastName } = req.body;
+    console.log(`Sign Up ${email} ${password} ${confirmPassword} ${firstName} ${lastName}`);
 
     try {
         const existingUser = await User.findOne({ email });
@@ -33,7 +35,7 @@ export const signup = async (req, res) => {
 
         const result = await User.create({ email, password: hashedPassword, name: `${firstName} ${lastName}`});
 
-        const token = jwt.sign({ email: result.email, id: result._id }, 'test', { expiresIn: '1h' });
+        const token = jwt.sign({ email: result.email, id: result._id }, process.env.JWT_SECRET_KEY, { expiresIn: '1h' });
 
         res.status(200).json({ result: result, token });
     } catch (error) {

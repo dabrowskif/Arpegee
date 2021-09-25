@@ -10,7 +10,7 @@ import Icon from './icon';
 import {AUTH} from "../../constants/actionTypes";
 import {useHistory} from "react-router-dom";
 import {signin, signup} from "../../actions/auth";
-import {getCharacter} from "../../actions/character";
+import {getCharacter} from "../../actions/characters";
 
 const initialState = {name: '', email: '', password: '', id: ''};
 

@@ -12,5 +12,8 @@ export default makeStyles( (theme) => ({
     filter: {
         padding: theme.spacing(1),
     },
-
+    circularProgress: {
+        display: "flex",
+        margin: "auto",
+    },
 }));

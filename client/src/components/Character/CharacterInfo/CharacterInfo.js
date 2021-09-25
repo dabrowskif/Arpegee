@@ -1,38 +1,24 @@
 import React, {useEffect, useState} from 'react';
 import useStyles from "./styles";
 import {useDispatch, useSelector} from "react-redux";
-import {getCharacter, updateCharacter} from "../../../actions/character";
+import {increaseStat} from "../../../actions/characters";
 import {Button, Container, Grow, Paper, Typography} from "@mui/material";
 
 const CharacterInfo = () => {
     const classes = useStyles();
     const dispatch = useDispatch();
 
-    const [character, setCharacter] = useState(useSelector(state => state?.character?.characterData?.result));
+    const character = useSelector(state => state?.characters?.userCharacter?.result);
 
-    const handleCharacterChange = async e => {
+
+    const handleButtonClick = e => {
         const {name, value} = e.target;
-
-        // TODO make span with text inside button to properly give e.target as button, not as span. Currently button doesn't work when clicking on the text
-        // TODO make it properly asnychronous, as it currently dispatches before setCharacter ends.
-        if (name && value) {
-            const oldValue = character.statistics[name];
-            await setCharacter({
-                ...character, statistics: {
-                    ...character.statistics,
-                    [name]: oldValue + Number(value),
-                },
-            });
-            await dispatch(updateCharacter(character));
-        }
+        dispatch(increaseStat(name, value, character._id));
     };
 
-
     useEffect(() => {
-    }, []);
-
-
-
+        console.log(character)
+    },[dispatch])
 
     return (
         <Grow in>
@@ -44,9 +30,10 @@ const CharacterInfo = () => {
                     <Typography variant="h5">
                         Strength: {character?.statistics?.strength} Dexterity:  {character?.statistics?.dexterity} Intelligence: {character?.statistics?.intelligence}
                     </Typography>
-                    <Button name="strength" value={1} variant="contained" color="primary" onClick={handleCharacterChange}>+str</Button>
-                    <Button name="dexterity" value={1} variant="contained" color="primary" onClick={handleCharacterChange}>+dex</Button>
-                    <Button name="intelligence" value={1} variant="contained" color="primary" onClick={handleCharacterChange}>+int</Button>
+                    <Button name="strength" value={1} variant="contained" color="primary" onClick={handleButtonClick}>+str</Button>
+                    <Button name="dexterity" value={1} variant="contained" color="primary" onClick={handleButtonClick}>+dex</Button>
+                    <Button name="intelligence" value={1} variant="contained" color="primary" onClick={handleButtonClick}>+int</Button>
+                    <Button name="level" value={1} variant="contained" color="primary" onClick={handleButtonClick}>+level</Button>
                 </Paper>
             </Container>
         </Grow>

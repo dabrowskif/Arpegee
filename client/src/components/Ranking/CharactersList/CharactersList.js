@@ -1,21 +1,39 @@
-import React from 'react';
-import useStyles from "./styles";
+import React, {useState} from 'react';
 import CharacterRow from "./CharacterRow";
-import {List, Paper, useTheme} from "@mui/material";
+import {Grid, List, ListItem, ListItemButton, ListItemText, Paper} from "@mui/material";
+import {useSelector} from "react-redux";
 
-const CharacterList = () => {
-    const theme = useTheme();
-    const classes = useStyles(theme);
+const CharactersList = ( ) => {
+    const { list } = useSelector(state => state?.ranking) || [];
 
     return (
         <Paper elevation={5}>
             <List>
-                <CharacterRow />
-                <CharacterRow />
-                <CharacterRow />
+                <Grid container>
+                    <ListItem>
+                        <ListItemButton disabled>
+                            <Grid item xs={12} sm={4}>
+                                    <ListItemText>Nickname</ListItemText>
+                            </Grid>
+                            <Grid item xs={12} sm={4}>
+                                    <ListItemText>Level</ListItemText>
+                            </Grid>
+                            <Grid item xs={12} sm={4}>
+                                    <ListItemText>Vocation</ListItemText>
+                            </Grid>
+                        </ListItemButton>
+                    </ListItem>
+                    {
+                        list?.map( character => (
+                            <ListItem key={character._id}>
+                                <CharacterRow character={character} />
+                            </ListItem>
+                        ))
+                    }
+                </Grid>
             </List>
         </Paper>
     );
 };
 
-export default CharacterList;
+export default CharactersList;

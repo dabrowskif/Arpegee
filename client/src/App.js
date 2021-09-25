@@ -10,6 +10,10 @@ import {Container, Toolbar} from "@mui/material";
 
 const App = () => {
     const user = useSelector(state => state?.user?.authData?.result);
+    /*const dispatch = useDispatch();*/
+
+    //dispatch({type: 'LOGOUT' });
+    //dispatch({type: 'LOGOUT_CHARACTER' });
 
     return (
             <Container>
@@ -21,6 +25,7 @@ const App = () => {
                     <Route path="/home" exact component={Home} />
                     <Route path="/auth" exact component={user ? () => <Redirect to="/home" /> : Auth} />
                     <Route path="/ranking" exact component={Ranking} />
+                    <Route path="/ranking/search" exact component={Ranking} />
                     <Route path="/character" exact component={user ? Character : () => <Redirect to="/auth" />} />
                 </Switch>
             </Container>
@@ -29,5 +34,6 @@ const App = () => {
 
 export default App;
 /*
+                    <Route path="/ranking/:id" component={Character} />
 
 <Route path="/character" exact component={user ? Character : () => <Redirect to="/auth" />} />*/

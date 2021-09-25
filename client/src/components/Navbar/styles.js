@@ -34,7 +34,7 @@ export default makeStyles( (theme) => ({
     navbar__menu: {
         display: "flex",
         flexDirection: "row",
-        [theme.breakpoints.down('sm')]: {
+        [theme.breakpoints.down('md')]: {
             display: "none",
         }
     },

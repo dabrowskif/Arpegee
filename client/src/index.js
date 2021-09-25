@@ -6,6 +6,7 @@ import thunk from 'redux-thunk';
 import { persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
 import {BrowserRouter} from "react-router-dom";
+/*import { composeWithDevTools } from 'redux-devtools-extension';*/
 
 
 import reducers from './reducers'
@@ -14,6 +15,8 @@ import './index.css';
 import {createTheme, ThemeProvider} from "@mui/material";
 
 const store = createStore(reducers, compose(applyMiddleware(thunk), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()));
+//const store = createStore(reducers, compose(applyMiddleware(thunk), composeWithDevTools()));
+
 const persistor = persistStore(store);
 const theme = createTheme();
 

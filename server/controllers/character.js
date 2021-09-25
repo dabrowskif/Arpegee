@@ -56,3 +56,34 @@ export const updateCharacter = async (req, res) => {
     }
 };
 
+export const increaseStatistic = async (req, res) => {
+    const { statistic, value, characterId } = req.body;
+    console.log(`updating ${statistic} by ${value} for character with id ${characterId} `);
+
+    try {
+        if (!mongoose.Types.ObjectId.isValid(characterId)) return res.status(404).send(`No character with id: ${characterId}`);
+        let newCharacter = null;
+        if (statistic === 'level') {
+            newCharacter = await Character.findByIdAndUpdate( characterId, { $inc: { 'level': Number(value) } }, { new: true } );
+            return res.status(200).json({ result: newCharacter });
+        } else {
+            switch (statistic) {
+                case 'dexterity':
+                    newCharacter = await Character.findByIdAndUpdate( characterId, { $inc: { 'statistics.dexterity': Number(value) } }, { new: true } );
+                    return res.status(200).json({ result: newCharacter });
+                case 'intelligence':
+                    newCharacter = await Character.findByIdAndUpdate( characterId, { $inc: { 'statistics.intelligence': Number(value) } }, { new: true } );
+                    return res.status(200).json({ result: newCharacter });
+                case 'strength':
+                    newCharacter = await Character.findByIdAndUpdate( characterId, { $inc: { 'statistics.strength': Number(value) } }, { new: true } );
+                    return res.status(200).json({ result: newCharacter });
+                default:
+                    new Error();
+            }
+        }
+    } catch (error) {
+        res.status(500).json( { message: error });
+    }
+};
+
+

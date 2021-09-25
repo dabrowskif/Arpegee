@@ -1,13 +1,21 @@
 import React from 'react';
-import {ListItem, ListItemButton, ListItemText, useTheme} from "@mui/material";
+import {Grid, ListItemButton, ListItemText} from "@mui/material";
 
-const CharacterRow = () => {
+const CharacterRow = ({character}) => {
+
+
     return (
-        <ListItem>
-            <ListItemButton>
-                <ListItemText>charakter</ListItemText>
-            </ListItemButton>
-        </ListItem>
+        <ListItemButton divider>
+            <Grid item xs={12} sm={4}>
+                <ListItemText>{character?.nickname}</ListItemText>
+            </Grid>
+            <Grid item xs={12} sm={4}>
+                <ListItemText>{character?.level}</ListItemText>
+            </Grid>
+            <Grid item xs={12} sm={4}>
+                <ListItemText>{character?.vocation}</ListItemText>
+            </Grid>
+        </ListItemButton>
     );
 };
 

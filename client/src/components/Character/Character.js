@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 
 
 import CharacterInfo from "./CharacterInfo/CharacterInfo";
-import {getCharacter} from "../../actions/character";
+import {getCharacter} from "../../actions/characters";
 import CharacterCreation from "./CharacterCreation/CharacterCreation";
 
 import useStyles from "./styles";
@@ -16,10 +16,9 @@ const Character = () => {
     const dispatch = useDispatch();
 
     const userId = useSelector(state => state?.user?.authData?.result?.googleId || state?.user?.authData?.result?._id );
-    const {characterData, isLoading} = useSelector(state => state?.character);
+    const {userCharacter, isLoading} = useSelector(state => state?.characters);
 
     useEffect(() => {
-        // TODO fix a bug when after refreshing the page, CharacterInfo doesn't get properly fetched data from db (somehow works after second refresh)
         dispatch(getCharacter(userId));
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [dispatch]);
@@ -29,8 +28,8 @@ const Character = () => {
     return (
         isLoading
             ? <CircularProgress className={classes.circularProgress} size={100}/>
-            :  (characterData
-                ? <CharacterInfo character={characterData?.result}/>
+            :  (userCharacter?.result
+                ? <CharacterInfo character={userCharacter?.result}/>
                 : <CharacterCreation userId={userId}/>)
     );
 };

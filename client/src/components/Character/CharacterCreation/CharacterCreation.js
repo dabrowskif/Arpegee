@@ -3,7 +3,7 @@ import useStyles from "./styles";
 import {useDispatch} from "react-redux";
 import {useHistory} from "react-router-dom";
 import Input from "../../Auth/Input";
-import {createCharacter} from "../../../actions/character";
+import {createCharacter} from "../../../actions/characters";
 import {
     Button,
     Container,

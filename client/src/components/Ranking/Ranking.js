@@ -71,6 +71,7 @@ const Ranking = () => {
             history.push(`/ranking/search?page=1&nickname=${filter.nickname}&vocation=${filter.vocation}&minlevel=${filter.minLevel}&maxlevel=${filter.maxLevel}`);
         }
 
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isFiltering]);
 
     return (

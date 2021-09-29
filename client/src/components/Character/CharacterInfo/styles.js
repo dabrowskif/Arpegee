@@ -21,4 +21,8 @@ export default makeStyles( (theme) => ({
         flexDirection: "row",
         justifyContent: "center",
     },
+    circularProgress: {
+        display: "flex",
+        margin: "auto",
+    },
 }));

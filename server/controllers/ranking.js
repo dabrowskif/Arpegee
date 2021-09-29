@@ -1,7 +1,7 @@
 import Character from '../models/character.js';
 
 export const getRanking = async (req, res) => {
-    console.log("Fetching ranking");
+    console.log("getRanking");
     const { page } = req.query;
     try {
         const LIMIT = 8;
@@ -17,7 +17,7 @@ export const getRanking = async (req, res) => {
 }
 
 export const getRankingByFilter = async (req, res) => {
-    console.log("Fetching ranking by search");
+    console.log("getRankingByFilter");
     const { nickname, vocation, minlevel, maxlevel, page } = req.query;
 
     let ranking = null;
@@ -48,3 +48,16 @@ export const getRankingByFilter = async (req, res) => {
         res.status(404).json({ message: error.message });
     }
 }
+
+export const getRankingCharacter = async (req, res) => {
+    const { id } = req.params;
+    console.log(`getRankingCharacter with id ${id}`);
+
+    try {
+        const result = await Character.findById(id);
+
+        res.status(200).json({ result: result });
+    } catch (error) {
+        res.status(500).json( { message: error });
+    }
+};

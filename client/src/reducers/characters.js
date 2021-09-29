@@ -22,7 +22,6 @@ const characters = (state = { userCharacter: {}, isLoading: true }, action) => {
             return {...state, userCharacter: action?.data};
         case LOGOUT_CHARACTER:
             return state = null;
-            // return {...state, characterData: {}, rankingCharacters: [], currentPage: 0, numberOfPages: 0, isLoading: false};
         default:
             return state;
     }

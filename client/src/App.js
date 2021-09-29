@@ -7,6 +7,8 @@ import Ranking from "./components/Ranking/Ranking";
 import {useSelector} from "react-redux";
 import Character from "./components/Character/Character";
 import {Container, Toolbar} from "@mui/material";
+import CharacterInfo from "./components/Character/CharacterInfo/CharacterInfo";
+import Arena from "./components/Arena/Arena";
 
 const App = () => {
     const user = useSelector(state => state?.user?.authData?.result);
@@ -26,7 +28,9 @@ const App = () => {
                     <Route path="/auth" exact component={user ? () => <Redirect to="/home" /> : Auth} />
                     <Route path="/ranking" exact component={Ranking} />
                     <Route path="/ranking/search" exact component={Ranking} />
+                    <Route path="/arena" exact component={Arena} />
                     <Route path="/character" exact component={user ? Character : () => <Redirect to="/auth" />} />
+                    <Route path="/character/:id" exact component={CharacterInfo} />
                 </Switch>
             </Container>
     )

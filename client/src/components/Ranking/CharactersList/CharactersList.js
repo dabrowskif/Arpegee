@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import CharacterRow from "./CharacterRow";
 import {Grid, List, ListItem, ListItemButton, ListItemText, Paper} from "@mui/material";
 import {useSelector} from "react-redux";

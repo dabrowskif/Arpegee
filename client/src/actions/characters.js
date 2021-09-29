@@ -6,7 +6,7 @@ import {
     START_LOADING,
     END_LOADING,
 } from "../constants/actionTypes";
-import {increaseStatistic} from "../api";
+import {getRankingCharacter} from "../api";
 
 export const createCharacter = (formData, history) => async (dispatch) => {
     try {
@@ -32,15 +32,6 @@ export const getCharacter = userId => async (dispatch) => {
 export const increaseStat = (stat, value, characterId) => async (dispatch) => {
     try {
         const { data } = await api.increaseStatistic(stat, value, characterId);
-        dispatch({ type: UPDATE_CHARACTER, data });
-    } catch (error) {
-        console.log(error);
-    }
-}
-
-export const updateCharacter = updatedCharacter => async (dispatch) => {
-    try {
-        const { data } = await api.updateCharacter(updatedCharacter);
         dispatch({ type: UPDATE_CHARACTER, data });
     } catch (error) {
         console.log(error);

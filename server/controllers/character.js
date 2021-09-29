@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 export const createCharacter = async (req, res) => {
     const { nickname, vocation, userId } = req.body;
     const statistics = setVocationStatistics(vocation);
-    console.log(`Creating character with nickname: ${nickname}, vocation: ${vocation}, userId: ${userId}`);
+    console.log(`createCharacter: ${nickname}, vocation: ${vocation}, userId: ${userId}`);
 
     const existingCharacter = await Character.findOne({ userId });
     if(existingCharacter) {
@@ -33,7 +33,7 @@ function setVocationStatistics(vocation) {
 
 export const getCharacter = async (req, res) => {
     const { userId } = req.body;
-    console.log(`fetching character from user with id ${userId}`);
+    console.log(`getCharacter with userId: ${userId}`);
 
     try {
         const result = await Character.findOne({ userId });
@@ -45,7 +45,7 @@ export const getCharacter = async (req, res) => {
 
 export const updateCharacter = async (req, res) => {
     const updatedCharacter = req.body;
-    console.log(`updating character for user with id ${updatedCharacter.userId}`);
+    console.log(`updateCharacter with userId ${updatedCharacter.userId}`);
     try {
         if (!mongoose.Types.ObjectId.isValid(updatedCharacter._id)) return res.status(404).send(`No character with id: ${updatedCharacter.userId}`);
 

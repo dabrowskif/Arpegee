@@ -33,7 +33,7 @@ const Navbar = () => {
         setUser(null);
         setIsSidebarOpened(false);
         dispatch({ type: LOGOUT });
-        dispatch({type: LOGOUT_CHARACTER});
+        dispatch({ type: LOGOUT_CHARACTER });
         history.push('/auth');
     };
 

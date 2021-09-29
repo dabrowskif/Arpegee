@@ -16,7 +16,7 @@ const Character = () => {
     const dispatch = useDispatch();
 
     const userId = useSelector(state => state?.user?.authData?.result?.googleId || state?.user?.authData?.result?._id );
-    const {userCharacter, isLoading} = useSelector(state => state?.characters);
+    const { userCharacter, isLoading } = useSelector(state => state?.characters);
 
     useEffect(() => {
         dispatch(getCharacter(userId));
@@ -29,7 +29,7 @@ const Character = () => {
         isLoading
             ? <CircularProgress className={classes.circularProgress} size={100}/>
             :  (userCharacter?.result
-                ? <CharacterInfo character={userCharacter?.result}/>
+                ? <CharacterInfo />
                 : <CharacterCreation userId={userId}/>)
     );
 };

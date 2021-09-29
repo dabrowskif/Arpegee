@@ -17,6 +17,7 @@ const ListPagination = ({ page, isFiltering, filter}) => {
         } else {
             dispatch(getRanking(page));
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [page]);
 
     return (

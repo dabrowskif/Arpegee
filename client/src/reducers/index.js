@@ -3,8 +3,9 @@ import {persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
 import auth from "./auth";
-import characters from "./characters";
+import character from "./character";
 import ranking from "./ranking";
+import arena from "./arena";
 
 const persistConfig = {
    key: 'root',
@@ -14,8 +15,9 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
    user: auth,
-   characters: characters,
+   characters: character,
    ranking: ranking,
+   arena: arena,
 });
 
 

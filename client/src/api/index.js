@@ -24,3 +24,6 @@ export const increaseStatistic = (statistic, value, characterId) => API.patch('/
 export const getRanking = page => API.get(`/ranking/get?page=${page}`);
 export const getRankingByFilter = ( filter, page ) => API.get(`/ranking/search?page=${page}&nickname=${filter.nickname}&vocation=${filter.vocation}&minlevel=${filter.minLevel}&maxlevel=${filter.maxLevel}`);
 
+export const generateMonster = (characterLevel, characterId) => API.post(`/arena/create/monster`, characterLevel, characterId);
+export const getMonsters = (characterId, characterLevel) => API.get(`/arena/get/monsters?characterId=${characterId}&characterLevel=${characterLevel}`);
+export const killMonster = monsterId => API.post('/arena/fight/monster', monsterId)

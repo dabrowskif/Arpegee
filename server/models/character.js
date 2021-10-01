@@ -21,6 +21,10 @@ const characterSchema = mongoose.Schema({
         type: Number,
         required:  true
     },
+    healthpoints: {
+        type: Number,
+        required:  true
+    },
     statistics: {
         strength: {
             type: Number,

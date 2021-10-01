@@ -17,7 +17,6 @@ const Menu = ( {user, logout, toggleDrawer, className, itemClassName } ) => {
                         <List className={className}>
                             <Item className={itemClassName} text="Home" to="/" icon={<Info />} onClick={toggleDrawer}/>
                             <Item className={itemClassName} text="Character" to="/character" icon={<FaceIcon />} onClick={toggleDrawer}/>
-                            <Item className={itemClassName} text="Talents" to="/talents" icon={<MenuBookIcon />} onClick={toggleDrawer}/>
                             <Item className={itemClassName} text="Arena" to="/arena" icon={<SportsKabaddi />} onClick={toggleDrawer}/>
                             <Item className={itemClassName} text="Ranking" to="/ranking" icon={<AccountBalance />} onClick={toggleDrawer}/>
                             <Item className={itemClassName} text="Logout" to="/auth" icon={<ExitToApp />} onClick={logout}/>

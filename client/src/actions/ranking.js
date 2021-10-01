@@ -22,7 +22,7 @@ export const getRankingByFilter = (filter, page) => async (dispatch) => {
     try {
         dispatch({ type: START_LOADING_RANKING });
         const { data: { data, currentPage, numberOfPages } } = await api.getRankingByFilter(filter, page);
-        dispatch({type: GET_RANKING, payload: {data, currentPage, numberOfPages} });
+        dispatch({type: GET_RANKING, payload: { data, currentPage, numberOfPages } });
         dispatch({ type: END_LOADING_RANKING });
     } catch (error) {
         console.log(error);

@@ -12,7 +12,7 @@ export const createCharacter = async (req, res) => {
     }
 
     try {
-        const result = await Character.create({ userId, nickname, vocation, level: 1, experience: 0, statistics });
+        const result = await Character.create({ userId, nickname, vocation, level: 1, healthpoints: 100, experience: 0, statistics });
 
         res.status(200).json({ result: result });
     } catch (error) {
@@ -36,12 +36,27 @@ export const getCharacter = async (req, res) => {
     console.log(`getCharacter with userId: ${userId}`);
 
     try {
-        const result = await Character.findOne({ userId });
+        let result = await Character.findOne({ userId });
+
+        //this is needed to update all existing chars as i didn't set healthpoints value for them
+        result = await repairHealthpoints(result);
+
         res.status(200).json({ result: result });
     } catch (error) {
         res.status(500).json( { message: error });
     }
 };
+
+
+const repairHealthpoints = async result => {
+    if(result.healthpoints === undefined) {
+        result.healthpoints = 100;
+        result = await Character.findByIdAndUpdate( result._id, result);
+    }
+    return result;
+};
+
+
 
 export const updateCharacter = async (req, res) => {
     const updatedCharacter = req.body;

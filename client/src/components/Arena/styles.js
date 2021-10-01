@@ -6,6 +6,14 @@ export default makeStyles( theme => ({
         alignItems: 'center',
         padding: theme.spacing(2),
     },
+    titleGrid: {
+        display: "flex",
+        justifyContent: "center",
+        padding: theme.spacing(2),
+    },
+    healthBar: {
+        color: "secondary.main"
+    },
     title: {
         textAlign: "center"
     }

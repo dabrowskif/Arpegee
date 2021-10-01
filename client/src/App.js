@@ -28,7 +28,7 @@ const App = () => {
                     <Route path="/auth" exact component={user ? () => <Redirect to="/home" /> : Auth} />
                     <Route path="/ranking" exact component={Ranking} />
                     <Route path="/ranking/search" exact component={Ranking} />
-                    <Route path="/arena" exact component={Arena} />
+                    <Route path="/arena" exact component={user ? Arena : () => <Redirect to="/auth" />} />
                     <Route path="/character" exact component={user ? Character : () => <Redirect to="/auth" />} />
                     <Route path="/character/:id" exact component={CharacterInfo} />
                 </Switch>
@@ -37,7 +37,3 @@ const App = () => {
 };
 
 export default App;
-/*
-                    <Route path="/ranking/:id" component={Character} />
-
-<Route path="/character" exact component={user ? Character : () => <Redirect to="/auth" />} />*/

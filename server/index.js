@@ -7,6 +7,7 @@ import dotenv from 'dotenv';
 import userRoutes from './routes/user.js';
 import rankingRoutes from './routes/ranking.js';
 import characterRoutes from './routes/character.js';
+import arenaRoutes from './routes/arena.js';
 
 const app = express();
 dotenv.config();
@@ -18,6 +19,7 @@ app.use(cors());
 app.use('/user', userRoutes);
 app.use('/character', characterRoutes);
 app.use('/ranking', rankingRoutes);
+app.use('/arena', arenaRoutes);
 
 const PORT = process.env.PORT || 5000;
 

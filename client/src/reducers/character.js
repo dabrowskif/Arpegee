@@ -8,7 +8,7 @@ import {
 
 
 
-const characters = (state = { userCharacter: {}, isLoading: true }, action) => {
+const character = (state = { userCharacter: {}, isLoading: true }, action) => {
     switch (action.type) {
         case START_LOADING:
             return {...state, isLoading: true};
@@ -27,4 +27,4 @@ const characters = (state = { userCharacter: {}, isLoading: true }, action) => {
     }
 }
 
-export default characters;
+export default character;

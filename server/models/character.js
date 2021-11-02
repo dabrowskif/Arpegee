@@ -21,9 +21,33 @@ const characterSchema = mongoose.Schema({
         type: Number,
         required:  true
     },
+    totalExperienceToLevelUp: {
+        type: Number,
+        required:  true
+    },
+    experienceToLevelDown: {
+        type: Number,
+        required:  true
+    },
+    experienceToLevelUp: {
+        type: Number,
+        required:  true
+    },
     healthpoints: {
         type: Number,
         required:  true
+    },
+    maxHealthpoints: {
+        type: Number,
+        required:  true
+    },
+    damage: {
+        type: Number,
+        required: true,
+    },
+    defense: {
+        type: Number,
+        required: true,
     },
     statistics: {
         strength: {

@@ -1,17 +1,25 @@
 import React, {useEffect, useState} from 'react';
-import useStyles from "./styles";
 import {useDispatch, useSelector} from "react-redux";
-import {getCharacter, increaseStat} from "../../../actions/characters";
-import {Button, CircularProgress, Container, Grow, Paper, Typography} from "@mui/material";
+import {
+    Button,
+    Container, Grid,
+    Grow,
+    Paper,
+    Typography
+} from "@mui/material";
 import {useParams} from "react-router-dom";
-import {getRankingCharacter} from "../../../actions/ranking";
+
+import {increaseStat} from "../../../actions/characters";
+import InfoRow from "./InfoRow";
+import useStyles from "./styles";
+
 
 const CharacterInfo = () => {
     const classes = useStyles();
     const dispatch = useDispatch();
     const { id } = useParams();
 
-    const userCharacter = useSelector(state => state?.characters?.userCharacter?.result);
+    const userCharacter = useSelector(state => state?.characters?.userCharacter);
     const rankingCharacter = useSelector(state => state?.ranking?.rankingCharacter?.result)
 
     const [character, setCharacter] = useState(null);
@@ -35,6 +43,8 @@ const CharacterInfo = () => {
 
     useEffect(() => {
         checkCharacter();
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [userCharacter, rankingCharacter, character])
 
     return (
@@ -46,17 +56,37 @@ const CharacterInfo = () => {
                         !character
                             ? <Typography variant="h3">No character found!</Typography>
                             : (  <>
-                                <Typography variant="h3">{character?.nickname}</Typography>
-                                <Typography variant="h4">Level {character?.level} {character?.vocation}</Typography>
-                                <Typography variant="h4">Statistics:</Typography>
-                                <Typography variant="h5">Strength: {character?.statistics?.strength} Dexterity:  {character?.statistics?.dexterity} Intelligence: {character?.statistics?.intelligence}</Typography>
+                                <Grid container>
+                                    <Grid item xs={12}><Typography variant="h3">{character?.nickname}</Typography></Grid>
+                                    <Grid item xs={12}><Typography variant="h4">Level {character?.level} {character?.vocation}</Typography></Grid>
+                                    <Grid item md={6}>
+                                        <Grid container className={classes.statisticsContainer}>
+                                            <Grid item xs={12}><Typography variant="h5" textAlign="center"> Statistics </Typography></Grid>
+                                            <InfoRow xs={12} name={'healthpoints'} shouldDisplayBar={true} minValue={0} currentValue={character?.healthpoints} maxValue={character?.maxHealthpoints}/>
+                                            <InfoRow xs={12} name={'experience'} shouldDisplayBar={true} minValue={0} currentValue={character?.experience - character?.totalExperienceToLevelUp + character?.experienceToLevelUp} maxValue={character?.experienceToLevelUp}/>
+                                            <InfoRow xs={12} sm={6} name={'damage'} currentValue={character?.damage} shouldDisplayName={true}/>
+                                            <InfoRow xs={12} sm={6} name={'defense'} currentValue={character?.defense} shouldDisplayName={true}/>
+                                            <InfoRow xs={12} sm={4} name={'strength'} currentValue={character?.statistics?.strength} shouldDisplayName={true}/>
+                                            <InfoRow xs={12} sm={4} name={'dexterity'} currentValue={character?.statistics?.dexterity} shouldDisplayName={true}/>
+                                            <InfoRow xs={12} sm={4} name={'intelligence'} currentValue={character?.statistics?.intelligence} shouldDisplayName={true}/>
+                                        </Grid>
+                                    </Grid>
+                                    <Grid item md={6}>
+                                        <Grid container className={classes.equipmentContainer}>
+                                            <Grid item xs={12}><Typography variant="h5" textAlign="center"> Equipment </Typography></Grid>
+                                        </Grid>
+                                    </Grid>
+                                </Grid>
                                 {
                                     isOwner
-                                    ? ( <>
-                                        <Button name="strength" value={1} variant="contained" color="primary" onClick={handleButtonClick}>+str</Button>
-                                        <Button name="dexterity" value={1} variant="contained" color="primary" onClick={handleButtonClick}>+dex</Button>
-                                        <Button name="intelligence" value={1} variant="contained" color="primary" onClick={handleButtonClick}>+int</Button>
-                                        <Button name="level" value={1} variant="contained" color="primary" onClick={handleButtonClick}>+level</Button> </> )
+                                    ? ( <Grid container className={classes.buttonsMenu}>
+                                            <Grid item xs={2}><Button name="strength" value={1} variant="contained" color="primary" onClick={handleButtonClick}>+str</Button></Grid>
+                                            <Grid item xs={2}><Button name="dexterity" value={1} variant="contained" color="primary" onClick={handleButtonClick}>+dex</Button></Grid>
+                                            <Grid item xs={2}><Button name="intelligence" value={1} variant="contained" color="primary" onClick={handleButtonClick}>+int</Button></Grid>
+                                            <Grid item xs={2}> <Button name="level" value={1} variant="contained" color="primary" onClick={handleButtonClick}>+level</Button></Grid>
+                                            <Grid item xs={2}><Button name="healthpoints" value={10} variant="contained" color="primary" onClick={handleButtonClick}>+hp</Button></Grid>
+                                            <Grid item xs={2}><Button name="experience" value={50} variant="contained" color="primary" onClick={handleButtonClick}>+xp</Button></Grid>
+                                        </Grid> )
                                     : null
                                 } </>)
                     }

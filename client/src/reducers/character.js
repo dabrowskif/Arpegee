@@ -15,11 +15,11 @@ const character = (state = { userCharacter: {}, isLoading: true }, action) => {
         case END_LOADING:
             return {...state, isLoading: false};
         case CREATE_CHARACTER:
-            return {...state, userCharacter: action?.data};
+            return {...state, userCharacter: action?.payload};
         case GET_CHARACTER:
-            return {...state, userCharacter: action?.data};
+            return {...state, userCharacter: action?.payload};
         case UPDATE_CHARACTER:
-            return {...state, userCharacter: action?.data};
+            return {...state, userCharacter: action?.payload};
         case LOGOUT_CHARACTER:
             return state = null;
         default:

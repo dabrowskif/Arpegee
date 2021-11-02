@@ -6,6 +6,8 @@ const drawerWidth = 240;
 export default makeStyles( (theme) => ({
     root: {
         display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
     },
     drawer: {
         [theme.breakpoints.up('sm')]: {
@@ -30,8 +32,8 @@ export default makeStyles( (theme) => ({
         },
     },
     toolbar: theme.mixins.toolbar,
-    drawerPaper: {
-        width: drawerWidth,
+    mainPaper: {
+        padding: theme.spacing(5),
     },
     content: {
         flexGrow: 1,

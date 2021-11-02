@@ -21,11 +21,15 @@ const monsterSchema = mongoose.Schema({
         type: Number,
         required: true,
     },
+    defense: {
+        type: Number,
+        required: true,
+    },
     experienceOnKill: {
         type: Number,
         required: true,
-    },/*
-    lootCategory: {
+    },
+    /*lootCategory: {
         type: Number,
         required: true,
     },*/

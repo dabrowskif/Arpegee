@@ -1,8 +1,9 @@
-import {generateNewMonster} from "./generate/monster/monster.js";
+import {generateNewMonster} from "./generate/arena/monster.js";
 import Monster from '../models/monster.js';
 import Character from '../models/character.js';
 import mongoose from "mongoose";
-import {MAX_MONSTERS_PER_ARENA} from "./generate/monster/monsterConstants.js";
+import {MAX_MONSTERS_PER_ARENA} from "./constants/monsterConstants.js";
+import {fightCharacterVsMonster} from "./fights/fights.js";
 
 
 export const createMonster = async (req, res) => {
@@ -21,15 +22,15 @@ export const createMonster = async (req, res) => {
 
 export const getMonsters = async (req, res) => {
     const { characterId, characterLevel } = req.query;
-    console.log(`getMonsters for characterId: ${characterId}`);
+    console.log(`getMonsters, characterId: ${characterId}`);
 
     if (!mongoose.Types.ObjectId.isValid(characterId)) return res.status(404).send(`No character with id: ${characterId}`);
 
     try {
-        let result = await Monster.find({characterId});
-        result = await fillOrCutMonsterTable(result, characterId, characterLevel);
+        let monstersTable = await Monster.find({characterId});
+        monstersTable = await fillOrCutMonsterTable(monstersTable, characterId, characterLevel);
 
-        res.status(200).json({ result: result });
+        res.status(200).json({ result: monstersTable });
     } catch (error) {
         res.status(500).json( { message: error });
     }
@@ -54,20 +55,45 @@ const fillOrCutMonsterTable = async (monsters, characterId, characterLevel) => {
     return Monster.find({characterId});
 };
 
+export const resetMonsters = async (req, res) => {
+    const { characterId, characterLevel } = req.query;
+    console.log(`resetMonsters, characterId: ${characterId}`);
+
+    if (!mongoose.Types.ObjectId.isValid(characterId)) return res.status(404).send(`No character with id: ${characterId}`);
+
+    try {
+        await Monster.deleteMany({characterId});
+        let monstersTable = await Monster.find({characterId});
+        monstersTable = await fillOrCutMonsterTable(monstersTable, characterId, characterLevel);
+
+        res.status(200).json({ result: monstersTable });
+    } catch (error) {
+        res.status(500).json( { message: error });
+    }
+};
+
+
 export const fightMonster = async (req, res) => {
     const { monsterId } = req.body;
-    console.log(`fightMonster with id: ${monsterId}`);
+    console.log(`fightMonster, monsterId: ${monsterId}`);
 
-    if (!mongoose.Types.ObjectId.isValid(monsterId)) return res.status(404).send(`No monster with id: ${monsterId}`);
-
-    let monster = await Monster.findById(monsterId);
-    const characterId = monster.characterId;
-    const character = await Character.findById(characterId);
-    await Monster.findByIdAndRemove(monster._id);
-    monster = await generateNewMonster(Number(character.level), characterId);
     try {
-        await monster.save();
-        res.status(201).json( {result: monster});
+        if (!mongoose.Types.ObjectId.isValid(monsterId)) return res.status(404).send(`No monster with id: ${monsterId}`);
+
+        let monster = await Monster.findById(monsterId);
+        const characterId = monster.characterId;
+        let characterBeforeFight = await Character.findById(characterId);
+
+        const { characterAfterFight, fightLog } = fightCharacterVsMonster(characterBeforeFight, monster);
+        if (fightLog.didWin) {
+            await Monster.findByIdAndRemove(monster._id);
+            monster = await generateNewMonster(Number(characterAfterFight.level), characterId);
+            await monster.save();
+        }
+
+        const updatedCharacter = await Character.findByIdAndUpdate( characterAfterFight._id, characterAfterFight, { new: true } );
+
+        res.status(201).json({ result: { monster, updatedCharacter, fightLog } });
     } catch (error) {
         res.status(500).json( { message: error });
     }

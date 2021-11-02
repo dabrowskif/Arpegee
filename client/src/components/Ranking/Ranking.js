@@ -22,10 +22,6 @@ const Ranking = () => {
     const [filter, setFilter] = useState( { nickname: '', vocation: 'all', minLevel: 1, maxLevel: 999});
 
     const page = query?.get('page') || 1;
-    const filteredNickname = query.get('nickname') || '';
-    const filteredVocation = query.get('vocation') || 'all';
-    const filteredMinLevel = query.get('minlevel') || 1;
-    const filteredMaxLevel = query.get('maxlevel') || 999;
 
     const ranking = useSelector(state => state?.ranking);
 

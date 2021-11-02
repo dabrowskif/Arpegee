@@ -1,0 +1,27 @@
+import React from 'react';
+import {Grid, Typography} from "@mui/material";
+import {useSelector} from "react-redux";
+
+import useStyles from "./styles";
+import LogRow from "./LogRow/LogRow";
+
+const FightLog = () => {
+    const classes = useStyles();
+    const fightLog = useSelector(state => state?.arena?.lastFightLog);
+
+    //TODO FINISH THIS
+    return (
+        <Grid container className={classes.mainGrid}>
+            <Grid item xs={12} className={classes.resultItem}><Typography variant="h4">{fightLog?.didWin ? <div>Fight Won!</div> : <div>Fight Lost!</div>}</Typography></Grid>
+            <Grid item xs={2} className={classes.resultItem}><Typography>Round Number</Typography></Grid>
+            <Grid item xs={10} className={classes.resultItem}><Typography>Log</Typography></Grid>
+            { fightLog?.roundLogs?.map( (roundInfo, roundNumber) => {
+                return <LogRow key={roundNumber} roundNumber={roundNumber} info={roundInfo} />
+            })}
+        </Grid>
+    );
+};
+
+export default FightLog;
+
+

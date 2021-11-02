@@ -1,37 +1,31 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {useDispatch} from "react-redux";
 
 
 import useStyles from "./styles"
 import {Button, Grid, Typography} from "@mui/material";
-import {killMonster} from "../../../../actions/arena";
+import {fightMonster} from "../../../../actions/arena";
+import InfoRow from "../../../Character/CharacterInfo/InfoRow";
 
-const Opponent = ({ monster }) => {
+const Opponent = ({ index, monster }) => {
     const classes = useStyles();
     const dispatch = useDispatch();
 
-    const handleKillButton = () => {
-        dispatch(killMonster(monster._id));
-    };
-
     const handleFightButton = () => {
-
+        dispatch(fightMonster(monster._id, index));
     };
-
-    useEffect(() => {
-
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [dispatch]);
 
     return (
-        <Grid item xs={4} className={classes.opponent}>
-            <Typography>{monster?.type + monster?.subtype}</Typography>
-            <Typography>{monster?.level} level</Typography>
-            <Typography>{monster?.healthpoints} HP</Typography>
-            <Typography>{monster?.damage} DMG</Typography>
-            <Typography>{monster?.experienceOnKill} EXP</Typography>
-            <Button variant="contained" onClick={handleFightButton}>Fight!</Button>
-            <Button variant="contained" onClick={handleKillButton}>Kill!</Button>
+        <Grid item xs={12} sm={4}>
+            <Grid container className={classes.opponent}>
+                <Grid item xs={12}><Typography variant="h5">{monster?.type + ' ' + monster?.subtype}</Typography></Grid>
+                <InfoRow xs={6} name={'level'} justifyContent={true} currentValue={monster?.level} shouldDisplayName={false}/>
+                <InfoRow xs={6} name={'experience'} justifyContent={true} currentValue={monster?.defense} shouldDisplayBar={false} shouldDisplayName={false}/>
+                <InfoRow xs={6} name={'damage'} justifyContent={true} currentValue={monster?.damage} shouldDisplayName={false}/>
+                <InfoRow xs={6} name={'defense'} justifyContent={true} currentValue={monster?.defense} shouldDisplayName={false}/>
+                <InfoRow xs={12} name={'healthpoints'} justifyContent={true} currentValue={monster?.healthpoints} shouldDisplayBar={false} shouldDisplayName={false}/>
+                <Button className={classes.fightButton} variant="contained" onClick={handleFightButton}>Fight!</Button>
+            </Grid>
         </Grid>
     );
 };

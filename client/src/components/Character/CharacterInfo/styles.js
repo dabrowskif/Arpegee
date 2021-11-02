@@ -8,6 +8,12 @@ export default makeStyles( (theme) => ({
     },
     form: {
     },
+    statisticsContainer: {
+        marginTop: theme.spacing(1),
+    },
+    equipmentContainer: {
+        marginTop: theme.spacing(1),
+    },
     typo: {
         textAlign: "center",
         paddingTop: theme.spacing(2),
@@ -21,8 +27,34 @@ export default makeStyles( (theme) => ({
         flexDirection: "row",
         justifyContent: "center",
     },
+    buttonsMenu: {
+        marginTop: theme.spacing(1),
+    },
     circularProgress: {
         display: "flex",
         margin: "auto",
     },
+    infoRow: {
+        display: "flex",
+        alignItems: "center",
+        paddingTop: theme.spacing(2),
+        paddingBot: theme.spacing(2),
+    },
+    infoIcon: {/*
+        backgroundColor: "violet",*/
+    },
+    row: {
+        alignItems: "center",
+        display: 'flex',
+    },
+    rowJustify: {
+        justifyContent: "center",
+        alignItems: "center",
+        display: 'flex',
+    },
+    infoDisplay: {
+        marginLeft: theme.spacing(0.5),
+    },
+    hpBar: {
+    }
 }));

@@ -26,4 +26,5 @@ export const getRankingByFilter = ( filter, page ) => API.get(`/ranking/search?p
 
 export const generateMonster = (characterLevel, characterId) => API.post(`/arena/create/monster`, characterLevel, characterId);
 export const getMonsters = (characterId, characterLevel) => API.get(`/arena/get/monsters?characterId=${characterId}&characterLevel=${characterLevel}`);
-export const killMonster = monsterId => API.post('/arena/fight/monster', monsterId)
+export const resetMonsters =  (characterId, characterLevel) => API.get(`/arena/reset/monsters?characterId=${characterId}&characterLevel=${characterLevel}`);
+export const fightMonster = monsterId => API.post('/arena/fight/monster', monsterId)

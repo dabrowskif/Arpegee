@@ -28,10 +28,11 @@ const Opponents = ({ characterId, characterLevel}) => {
                 <Grid container className={classes.mainGrid}>{
                     arena?.isLoading
                         ? <CircularProgress className={classes.circularProgress} size={100}/>
-                        :  (arena?.monsters?.map( monster => {
-                                return <Opponent key ={monster?._id} monster={monster} />
-                            }))
-                    }
+                        :  (arena?.monsters.map( (monster, index) => {
+                                return arena?.isMonsterLoading[index]
+                                    ? <CircularProgress key={monster?._id} className={classes.circularProgress} size={50}/>
+                                    : <Opponent key={monster?._id} index={index} monster={monster} />
+                            }))}
                 </Grid>
         </Container>
     );

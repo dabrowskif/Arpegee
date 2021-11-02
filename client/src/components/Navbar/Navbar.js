@@ -8,7 +8,7 @@ import {LOGOUT, LOGOUT_CHARACTER} from "../../constants/actionTypes";
 import {Link, useHistory, useLocation} from "react-router-dom";
 import Menu from "./Menu";
 import {AppBar, Avatar, IconButton, SwipeableDrawer, Toolbar, Typography} from "@mui/material";
-import {Chat} from "@mui/icons-material";
+import GamepadIcon from '@mui/icons-material/Gamepad';
 
 const Navbar = () => {
     const dispatch = useDispatch();
@@ -52,8 +52,8 @@ const Navbar = () => {
     return (
         <AppBar className={classes.appBar}>
             <div className={classes.brandContainer}>
-                <IconButton className={classes.brandContainer__icon} component={Link} to="/"> <Chat/> </IconButton>
-                <Typography variant="h6" className={classes.brandContainer__title}> Arpege </Typography>
+                <IconButton className={classes.brandContainer__icon} component={Link} to="/"> <GamepadIcon/> </IconButton>
+                <Typography variant="h6" className={classes.brandContainer__title}> Arpegee </Typography>
                 {
                     user?.result
                     ? (

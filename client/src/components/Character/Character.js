@@ -20,6 +20,7 @@ const Character = () => {
 
     useEffect(() => {
         dispatch(getCharacter(userId));
+
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [dispatch]);
 
@@ -28,7 +29,7 @@ const Character = () => {
     return (
         isLoading
             ? <CircularProgress className={classes.circularProgress} size={100}/>
-            :  (userCharacter?.result
+            :  (userCharacter
                 ? <CharacterInfo />
                 : <CharacterCreation userId={userId}/>)
     );

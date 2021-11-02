@@ -4,7 +4,6 @@ import React from 'react';
 import Item from "./Item";
 import {List} from "@mui/material";
 import {AccountBalance, ExitToApp, Info, SportsKabaddi, VpnKey} from "@mui/icons-material";
-import MenuBookIcon from '@mui/icons-material/MenuBook';
 import FaceIcon from '@mui/icons-material/Face';
 
 

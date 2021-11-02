@@ -11,6 +11,12 @@ export default makeStyles( theme => ({
         justifyContent: "center",
         padding: theme.spacing(2),
     },
+    resetRow: {
+        marginTop: theme.spacing(1),
+        alignItems: "center",
+        justifyContent: "center",
+        display: "flex",
+    },
     healthBar: {
         color: "secondary.main"
     },

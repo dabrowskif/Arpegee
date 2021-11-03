@@ -1,22 +1,13 @@
-
 export const performHit = (performer, target) => {
-    const damageDealt = Math.abs(calculateDamage(performer) - calculateDefense(target));
+  const damageDealt = Math.abs(calculateDamage(performer) - calculateDefense(target));
 
-    target.healthpoints -= damageDealt;
+  target.healthpoints -= damageDealt;
 
-    return damageDealt;
-}
+  return damageDealt;
+};
 
+export const calculateDamage = (performer) => performer.damage;
 
-export const calculateDamage = performer => {
-    return performer.damage;
-}
+export const calculateDefense = (target) => target.defense;
 
-export const calculateDefense = target => {
-    return target.defense;
-}
-
-
-export const isDead = fighter => {
-    return fighter.healthpoints <= 0;
-}
+export const isDead = (fighter) => fighter.healthpoints <= 0;

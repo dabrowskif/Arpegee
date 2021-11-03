@@ -1,85 +1,85 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const characterSchema = mongoose.Schema({
-    userId: {
-        type: String,
-        required: true
+  userId: {
+    type: String,
+    required: true,
+  },
+  nickname: {
+    type: String,
+    required: true,
+  },
+  vocation: {
+    type: String,
+    required: true,
+  },
+  level: {
+    type: Number,
+    required: true,
+  },
+  experience: {
+    type: Number,
+    required: true,
+  },
+  totalExperienceToLevelUp: {
+    type: Number,
+    required: true,
+  },
+  experienceToLevelDown: {
+    type: Number,
+    required: true,
+  },
+  experienceToLevelUp: {
+    type: Number,
+    required: true,
+  },
+  healthpoints: {
+    type: Number,
+    required: true,
+  },
+  maxHealthpoints: {
+    type: Number,
+    required: true,
+  },
+  damage: {
+    type: Number,
+    required: true,
+  },
+  defense: {
+    type: Number,
+    required: true,
+  },
+  statistics: {
+    strength: {
+      type: Number,
     },
-    nickname: {
-        type: String,
-        required:  true
+    dexterity: {
+      type: Number,
     },
-    vocation: {
-        type: String,
-        required:  true
+    intelligence: {
+      type: Number,
     },
-    level: {
-        type: Number,
-        required:  true
+  },
+  equipment: {
+    helmet: {
+      type: String,
     },
-    experience: {
-        type: Number,
-        required:  true
+    chest: {
+      type: String,
     },
-    totalExperienceToLevelUp: {
-        type: Number,
-        required:  true
+    legs: {
+      type: String,
     },
-    experienceToLevelDown: {
-        type: Number,
-        required:  true
+    boots: {
+      type: String,
     },
-    experienceToLevelUp: {
-        type: Number,
-        required:  true
+    weapon1: {
+      type: String,
     },
-    healthpoints: {
-        type: Number,
-        required:  true
+    weapon2: {
+      type: String,
     },
-    maxHealthpoints: {
-        type: Number,
-        required:  true
-    },
-    damage: {
-        type: Number,
-        required: true,
-    },
-    defense: {
-        type: Number,
-        required: true,
-    },
-    statistics: {
-        strength: {
-            type: Number,
-        },
-        dexterity: {
-            type: Number,
-        },
-        intelligence: {
-            type: Number,
-        },
-    },
-    equipment: {
-        helmet: {
-            type: String,
-        },
-        chest: {
-            type: String,
-        },
-        legs: {
-            type: String,
-        },
-        boots: {
-            type: String,
-        },
-        weapon1: {
-            type: String,
-        },
-        weapon2: {
-            type: String,
-        },
-    }
+  },
 });
 
-export default mongoose.model("Character", characterSchema);
+export default mongoose.model('Character', characterSchema);

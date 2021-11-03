@@ -1,40 +1,32 @@
-import React, {useEffect} from 'react';
-import {useDispatch, useSelector} from "react-redux";
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
+import { CircularProgress } from '@mui/material';
+import CharacterInfo from './CharacterInfo/CharacterInfo.js';
+import { getCharacter } from '../../actions/characters.js';
+import CharacterCreation from './CharacterCreation/CharacterCreation.js';
 
-import CharacterInfo from "./CharacterInfo/CharacterInfo";
-import {getCharacter} from "../../actions/characters";
-import CharacterCreation from "./CharacterCreation/CharacterCreation";
-
-import useStyles from "./styles";
-import {CircularProgress} from "@mui/material";
-
-
+import useStyles from './styles.js';
 
 const Character = () => {
-    const classes = useStyles();
-    const dispatch = useDispatch();
+  const classes = useStyles();
+  const dispatch = useDispatch();
 
-    const userId = useSelector(state => state?.user?.authData?.result?.googleId || state?.user?.authData?.result?._id );
-    const { userCharacter, isLoading } = useSelector(state => state?.characters);
+  const userId = useSelector((state) => state?.user?.authData?.result?.googleId || state?.user?.authData?.result?._id);
+  const { userCharacter, isLoading } = useSelector((state) => state?.characters);
 
-    useEffect(() => {
-        dispatch(getCharacter(userId));
+  useEffect(() => {
+    dispatch(getCharacter(userId));
+  }, [dispatch]);
 
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [dispatch]);
-
-
-
-    return (
-        isLoading
-            ? <CircularProgress className={classes.circularProgress} size={100}/>
-            :  (userCharacter
-                ? <CharacterInfo />
-                : <CharacterCreation userId={userId}/>)
-    );
+  return (
+  // eslint-disable-next-line no-nested-ternary
+    isLoading
+      ? <CircularProgress className={classes.circularProgress} size={100} />
+      : (userCharacter
+        ? <CharacterInfo />
+        : <CharacterCreation userId={userId} />)
+  );
 };
 
 export default Character;
-
-

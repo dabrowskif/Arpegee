@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Pagination, PaginationItem, Paper } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+
 import useStyles from './styles.js';
 import { getRanking, getRankingByFilter } from '../../../actions/ranking.js';
 

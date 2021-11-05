@@ -1,10 +1,8 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import RefreshIcon from '@mui/icons-material/Refresh';
+import { Container, Grid, Grow, IconButton, Paper, Typography } from '@mui/material';
 
-import {
-  Container, Grid, Grow, IconButton, Paper, Typography,
-} from '@mui/material';
 import useStyles from './styles.js';
 import Opponents from './Opponents/Opponents.js';
 import { resetMonsters } from '../../actions/arena.js';

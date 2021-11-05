@@ -1,11 +1,6 @@
 import express from 'express';
 
-import {
-  createCharacter,
-  getCharacter,
-  increaseStatistic,
-  updateCharacter,
-} from '../controllers/character.js';
+import { createCharacter, getCharacter, increaseStatistic, updateCharacter } from '../controllers/character.js';
 import { getRankingCharacter } from '../controllers/ranking.js';
 
 const router = express.Router();

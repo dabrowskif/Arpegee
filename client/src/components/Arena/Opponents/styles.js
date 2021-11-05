@@ -8,6 +8,7 @@ export default makeStyles((theme) => ({
   },
   mainGrid: {
     display: 'flex',
+    padding: theme.spacing(2),
   },
   circularProgress: {
     display: 'flex',

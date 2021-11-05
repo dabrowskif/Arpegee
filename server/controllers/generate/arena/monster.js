@@ -1,7 +1,5 @@
 import Monster from '../../../models/monster.js';
-import {
-  ARCHER, getSubtype, getType, MAGE, NUMBER_OF_SUBTYPES, NUMBER_OF_TYPES, WARRIOR,
-} from '../../constants/monsterConstants.js';
+import { ARCHER, getSubtype, getType, MAGE, NUMBER_OF_SUBTYPES, NUMBER_OF_TYPES, WARRIOR } from '../../constants/monsterConstants.js';
 import {
   monsterDamageFormula,
   monsterDefenseFormula,

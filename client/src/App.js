@@ -2,6 +2,7 @@ import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Container, Toolbar } from '@mui/material';
+
 import Navbar from './components/Navbar/Navbar.js';
 import Home from './components/Home/Home.js';
 import Auth from './components/Auth/Auth.js';

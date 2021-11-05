@@ -2,6 +2,7 @@ import { makeStyles } from '@mui/styles';
 
 export default makeStyles((theme) => ({
   paper: {
+    // backgroundColor: theme.palette.primary.light,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -9,7 +10,7 @@ export default makeStyles((theme) => ({
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.primary.main,
+    backgroundColor: theme.palette.secondary.dark,
   },
   signTitle: {
     marginBottom: theme.spacing(1),

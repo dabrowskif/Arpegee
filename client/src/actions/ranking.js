@@ -1,10 +1,10 @@
+import * as api from '../api';
 import {
   END_LOADING,
   END_LOADING_RANKING,
   GET_RANKING, GET_RANKING_CHARACTER, START_LOADING,
   START_LOADING_RANKING,
 } from '../constants/actionTypes.js';
-import * as api from '../api';
 
 export const getRanking = (page) => async (dispatch) => {
   try {

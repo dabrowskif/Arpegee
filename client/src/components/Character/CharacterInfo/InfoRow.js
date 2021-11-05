@@ -13,9 +13,8 @@ import useStyles from './styles.js';
 
 import ValueBar from './ValueBar.js';
 
-const InfoRow = ({
-  xs, sm, md, justifyContent, shouldDisplayBar, shouldDisplayName, name, minValue, maxValue, currentValue,
-}) => {
+// TODO Refactor this component (DRY and unnecessary props)
+const InfoRow = ({ xs, sm, md, justifyContent, shouldDisplayBar, shouldDisplayName, name, minValue, maxValue, currentValue }) => {
   const classes = useStyles();
 
   const display = () => {

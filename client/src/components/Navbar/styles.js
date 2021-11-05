@@ -2,6 +2,7 @@ import { makeStyles } from '@mui/styles';
 
 export default makeStyles((theme) => ({
   appBar: {
+    backgroundColor: theme.palette.secondary.dark,
     padding: '0px',
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -54,9 +55,7 @@ export default makeStyles((theme) => ({
   },
   menu__item_icon: {
     color: 'inherit',
-    // background: "red",
   },
   menu__item_text: {
-    // background: "blue",
   },
 }));

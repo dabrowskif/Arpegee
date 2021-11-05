@@ -20,7 +20,6 @@ const CharacterInfo = () => {
 
   const userCharacter = useSelector((state) => state?.characters?.userCharacter);
   const rankingCharacter = useSelector((state) => state?.ranking?.rankingCharacter?.result);
-
   const [character, setCharacter] = useState(null);
   const [isOwner, setIsOwner] = useState(false);
 

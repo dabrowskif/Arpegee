@@ -1,17 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import {
-  Button,
-  Container,
-  FormControl,
-  FormControlLabel,
-  Grow,
-  Paper,
-  Radio,
-  RadioGroup,
-  Typography,
-} from '@mui/material';
+import { Button, Container, FormControl, FormControlLabel, Grow, Paper, Radio, RadioGroup, Typography } from '@mui/material';
 import useStyles from './styles.js';
 import Input from '../../Auth/Input.js';
 import { createCharacter } from '../../../actions/characters.js';
@@ -22,7 +12,6 @@ const CharacterCreation = ({ userId }) => {
   const history = useHistory();
 
   const initialState = { nickname: '', vocation: 'warrior', userId };
-
   const [formData, setFormData] = useState(initialState);
 
   const handleSubmit = (e) => {

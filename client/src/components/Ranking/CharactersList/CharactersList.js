@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-  Grid, List, ListItem, ListItemButton, ListItemText, Paper,
-} from '@mui/material';
+import { Grid, List, ListItem, ListItemButton, ListItemText, Paper } from '@mui/material';
 import { useSelector } from 'react-redux';
 import CharacterRow from './CharacterRow.js';
 
@@ -26,12 +24,12 @@ const CharactersList = () => {
             </ListItemButton>
           </ListItem>
           {
-                        list?.map((character) => (
-                          <ListItem key={character._id}>
-                            <CharacterRow character={character} />
-                          </ListItem>
-                        ))
-                    }
+            list?.map((character) => (
+              <ListItem key={character._id}>
+                <CharacterRow character={character} />
+              </ListItem>
+            ))
+          }
         </Grid>
       </List>
     </Paper>

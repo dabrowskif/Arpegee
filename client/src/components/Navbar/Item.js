@@ -3,9 +3,7 @@ import { Link } from 'react-router-dom';
 import { ListItem, ListItemIcon, ListItemText } from '@mui/material';
 import useStyles from './styles.js';
 
-const Item = ({
-  text, to, className, onClick = null, icon,
-}) => {
+const Item = ({ text, to, className, onClick = null, icon }) => {
   const classes = useStyles();
 
   return (

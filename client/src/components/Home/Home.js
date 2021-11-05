@@ -13,7 +13,7 @@ const Home = () => {
           <Paper elevation={5} className={classes.mainPaper}>
             <Typography variant="h2" textAlign="center">Welcome to Arpegee!</Typography>
             <div className={classes.toolbar} />
-            <Typography variant="h5" textAlign="center">You won`&apos;`t find game description here. Code is the describer. :)</Typography>
+            <Typography variant="h5" textAlign="center">You won&apos;t find game description here. Code is the describer. :)</Typography>
           </Paper>
         </main>
       </div>

@@ -4,9 +4,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 
 import { useDispatch } from 'react-redux';
 import { Link, useHistory, useLocation } from 'react-router-dom';
-import {
-  AppBar, Avatar, IconButton, SwipeableDrawer, Toolbar, Typography,
-} from '@mui/material';
+import { AppBar, Avatar, IconButton, SwipeableDrawer, Toolbar, Typography } from '@mui/material';
 import GamepadIcon from '@mui/icons-material/Gamepad';
 import Menu from './Menu.js';
 import { LOGOUT, LOGOUT_CHARACTER } from '../../constants/actionTypes.js';
@@ -56,15 +54,15 @@ const Navbar = () => {
         </IconButton>
         <Typography variant="h6" className={classes.brandContainer__title}> Arpegee </Typography>
         {
-                    user?.result
-                      ? (
-                        <div className={classes.brandContainer__profile}>
-                          <Avatar className={classes.brandContainer__profile__avatar} alt={user?.result.name} src={user?.result.imageUrl}>{user?.result.name.charAt(0)}</Avatar>
-                          <Typography className={classes.brandContainer__profile__name} variant="h6">{user?.result.name}</Typography>
-                        </div>
-                      )
-                      : null
-                }
+          user?.result
+            ? (
+              <div className={classes.brandContainer__profile}>
+                <Avatar className={classes.brandContainer__profile__avatar} alt={user?.result.name} src={user?.result.imageUrl}>{user?.result.name.charAt(0)}</Avatar>
+                <Typography className={classes.brandContainer__profile__name} variant="h6">{user?.result.name}</Typography>
+              </div>
+            )
+            : null
+        }
       </div>
       <Toolbar className={classes.navbar}>
         <Menu

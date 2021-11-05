@@ -28,7 +28,6 @@ export default makeStyles((theme) => ({
     justifyContent: 'center',
   },
   filterButton: {
-
     margin: theme.spacing(2, 0, 1.5),
   },
 }));

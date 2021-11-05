@@ -40,8 +40,7 @@ export default makeStyles((theme) => ({
     paddingTop: theme.spacing(2),
     paddingBot: theme.spacing(2),
   },
-  infoIcon: {/*
-        backgroundColor: "violet", */
+  infoIcon: {
   },
   row: {
     alignItems: 'center',

@@ -60,7 +60,7 @@ export const getCharacter = async (req, res) => {
   try {
     let character = await Character.findOne({ userId });
 
-    // if any key:value is added to the character schema during the development process, change this function
+    // if any field is added to the character schema during the development process, change this function
     // to insert it into the existing characters here.
     character = await updateNewChanges(character);
 
@@ -72,8 +72,8 @@ export const getCharacter = async (req, res) => {
 
 // eslint-disable-next-line arrow-body-style
 const updateNewChanges = async (character) => {
-  // if healthpoints was recently added to the character model, "if statement" uploads it to all existing characters
-  // change healthpoints to any newly added field.
+  // For example, if healthpoints was recently added to the character model, "if statement" uploads it to all existing characters.
+  // Change healthpoints to any newly added field.
   /* if (character.healthpoints === undefined) {
     character.healthpoints = characterHealthpointsFormula(1, character.vocation);
     character = await Character.findByIdAndUpdate(character._id, character);

@@ -15,7 +15,7 @@ const FightLog = () => {
       <Grid item xs={12} className={classes.resultItem}><Typography variant="h4">{fightLog?.didWin ? <div>Fight Won!</div> : <div>Fight Lost!</div>}</Typography></Grid>
       <Grid item xs={2} className={classes.resultItem}><Typography>Round Number</Typography></Grid>
       <Grid item xs={10} className={classes.resultItem}><Typography>Log</Typography></Grid>
-      { fightLog?.roundLogs?.map((roundInfo, roundNumber) => <LogRow key={roundNumber} roundNumber={roundNumber} info={roundInfo} />)}
+      { fightLog?.roundLogs?.map((roundInfo, roundNumber) => <LogRow key={roundNumber} roundNumber={roundNumber} roundInfo={roundInfo} />)}
     </Grid>
   );
 };

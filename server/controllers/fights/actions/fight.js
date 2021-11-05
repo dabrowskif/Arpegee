@@ -1,6 +1,5 @@
 export const performHit = (performer, target) => {
   const damageDealt = Math.abs(calculateDamage(performer) - calculateDefense(target));
-
   target.healthpoints -= damageDealt;
 
   return damageDealt;

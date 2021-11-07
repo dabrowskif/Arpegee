@@ -1,17 +1,12 @@
-import { combineReducers } from 'redux';
-import { persistReducer } from 'redux-persist';
+import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
+import { persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+import thunk from 'redux-thunk';
 
 import auth from './auth.js';
 import character from './character.js';
 import ranking from './ranking.js';
 import arena from './arena.js';
-
-const persistConfig = {
-  key: 'root',
-  storage,
-  whitelist: ['user', 'character'],
-};
 
 const rootReducer = combineReducers({
   user: auth,
@@ -20,4 +15,14 @@ const rootReducer = combineReducers({
   arena,
 });
 
-export default persistReducer(persistConfig, rootReducer);
+const persistConfig = {
+  key: 'root',
+  storage,
+};
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+// const store = createStore(persistedReducer);
+const store = createStore(persistedReducer, compose(applyMiddleware(thunk), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()));
+const persistor = persistStore(store);
+
+export { store, persistor };

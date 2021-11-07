@@ -13,18 +13,17 @@ API.interceptors.request.use((req) => {
 export const signin = (formData) => API.post('/user/signin', formData);
 export const signup = (formData) => API.post('/user/signup', formData);
 
-export const getCharacter = (userId) => API.post('/character/get', userId); // TODO make it get if possible
-export const getRankingCharacter = (characterId) => API.get(`/character/${characterId}`);
-
+export const getCharacter = (userId) => API.get(`/character/get/${userId}`);
 export const createCharacter = (formData) => API.post('/character/create', formData);
-
 export const updateCharacter = (updatedCharacter) => API.patch('/character/update', updatedCharacter);
 export const increaseStatistic = (statistic, value, characterId) => API.patch('/character/statistics/increase', { statistic, value, characterId });
 
 export const getRanking = (page) => API.get(`/ranking/get?page=${page}`);
+// TODO change getRankingCharacter endpoint
+export const getRankingCharacter = (characterId) => API.get(`/character/${characterId}`);
 export const getRankingByFilter = (filter, page) => API.get(`/ranking/search?page=${page}&nickname=${filter.nickname}&vocation=${filter.vocation}&minlevel=${filter.minLevel}&maxlevel=${filter.maxLevel}`);
 
-export const generateMonster = (characterLevel, characterId) => API.post('/arena/create/monster', characterLevel, characterId);
-export const getMonsters = (characterId, characterLevel) => API.get(`/arena/get/monsters?characterId=${characterId}&characterLevel=${characterLevel}`);
-export const resetMonsters = (characterId, characterLevel) => API.get(`/arena/reset/monsters?characterId=${characterId}&characterLevel=${characterLevel}`);
-export const fightMonster = (monsterId) => API.post('/arena/fight/monster', monsterId);
+export const createMonster = (characterId) => API.post('/arena/create/monster', characterId);
+export const getMonsters = (characterId) => API.get(`/arena/get/monsters?characterId=${characterId}`);
+export const resetMonsters = (characterId) => API.patch(`/arena/reset/monsters?characterId=${characterId}`);
+export const fightMonster = (monsterId) => API.patch(`/arena/fight/monster/${monsterId}`);

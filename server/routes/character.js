@@ -1,16 +1,16 @@
 import express from 'express';
 
-import { createCharacter, getCharacter, increaseStatistic, updateCharacter } from '../controllers/character.js';
-import { getRankingCharacter } from '../controllers/ranking.js';
+import { createCharacter, getCharacter, increaseStatistic, updateCharacter } from '../controllers/api/character.js';
+import { getRankingCharacter } from '../controllers/api/ranking.js';
 
 const router = express.Router();
 
-router.post('/create', createCharacter);
-// TODO change to .get
-router.post('/get', getCharacter);
+router.get('/get/:userId', getCharacter);
 router.get('/:id', getRankingCharacter);
 
-router.patch('/statistics/increase', increaseStatistic);
+router.post('/create', createCharacter);
+
 router.patch('/update', updateCharacter);
+router.patch('/statistics/increase', increaseStatistic);
 
 export default router;

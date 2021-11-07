@@ -2,7 +2,7 @@ import {
   characterDamageFormula,
   characterDefenseFormula,
   characterHealthpointsFormula, experienceRequiredForLevel, totalExperienceRequiredForLevel,
-} from '../../formulas/formulas.js';
+} from '../formulas/formulas.js';
 
 // TODO repair all this logic with leveling up and down
 
@@ -12,7 +12,6 @@ export const levelUp = (character) => {
 };
 
 export const levelDown = (character) => {
-  console.log('level down');
   character.experience -= Math.floor(character.experience / 10);
   checkLevelExperience(character);
 };

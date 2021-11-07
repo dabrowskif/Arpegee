@@ -6,14 +6,15 @@ import useStyles from './styles.js';
 import Opponent from './Opponent/Opponent.js';
 import { getMonsters } from '../../../actions/arena.js';
 
-const Opponents = ({ characterId, characterLevel }) => {
+const Opponents = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
   const arena = useSelector((state) => state?.arena);
+  const character = useSelector((state) => state?.characters?.userCharacter);
 
   useEffect(() => {
-    dispatch(getMonsters(characterId, characterLevel));
+    dispatch(getMonsters(character?._id, character?.level));
   }, []);
 
   return (

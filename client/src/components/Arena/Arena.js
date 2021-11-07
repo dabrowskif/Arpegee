@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import { Container, Grid, Grow, IconButton, Paper, Typography } from '@mui/material';
@@ -8,15 +8,22 @@ import Opponents from './Opponents/Opponents.js';
 import { resetMonsters } from '../../actions/arena.js';
 import FightLog from './FightLog/FightLog.js';
 import InfoRow from '../Character/CharacterInfo/InfoRow.js';
+import { getCharacter } from '../../actions/characters';
 
 const Arena = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const character = useSelector((state) => state?.characters?.userCharacter);
+  const userId = useSelector((state) => state?.user?.authData?.result?.googleId || state?.user?.authData?.result?._id);
 
   const handleResetMonstersClick = () => {
     dispatch(resetMonsters(character?._id, character?.level));
   };
+
+  useEffect(() => {
+    dispatch(getCharacter(userId));
+    // dispatch(getCharacter(userId));
+  }, []);
 
   return (
     <Grow in>

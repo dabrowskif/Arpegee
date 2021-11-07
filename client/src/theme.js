@@ -4,9 +4,9 @@ const font = "'Rubik', sans-serif";
 
 const PRIMARY_LIGHT = '#D1D1D1';
 const PRIMARY_MAIN = '#1A1A1D';
-// eslint-disable-next-line no-unused-vars
 const PRIMARY_DARK = '#1A1A1D';
 const PRIMARY_CONTRAST = '#FFFFFF';
+
 const SECONDARY_LIGHT = '#C3073F';
 const SECONDARY_MAIN = '#6F2232';
 const SECONDARY_DARK = '#531516';
@@ -142,7 +142,7 @@ const theme = createTheme({
     primary: {
       light: PRIMARY_LIGHT,
       main: PRIMARY_MAIN,
-      dark: PRIMARY_MAIN,
+      dark: PRIMARY_DARK,
       contrastText: PRIMARY_CONTRAST,
     },
     secondary: {

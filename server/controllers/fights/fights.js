@@ -1,12 +1,10 @@
 import { levelDown, levelUp } from './actions/character.js';
 import { isDead, performHit } from './actions/fight.js';
-import { totalExperienceRequiredForLevel } from '../formulas/formulas.js';
+import { totalExperienceRequiredForLevel } from './formulas/formulas.js';
 
 // TODO equipment implementation and calculations
 // TODO spells and passives implementation and calculations
 export const fightCharacterVsMonster = (character, monster) => {
-  console.log('fightCharacterVsMonster');
-
   let fighter1 = character;
   let fighter2 = monster;
   let isCharacterAttacking = true;
@@ -42,6 +40,7 @@ export const fightCharacterVsMonster = (character, monster) => {
   }
   fightLog.didWin = true;
   fighter2.experience += fighter1.experienceOnKill;
+
   while (fighter2.experience >= totalExperienceRequiredForLevel(fighter2.level + 1)) {
     levelUp(fighter2);
     fightLog.newLevel = fighter2.level;

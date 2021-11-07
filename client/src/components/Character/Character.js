@@ -17,15 +17,15 @@ const Character = () => {
 
   useEffect(() => {
     dispatch(getCharacter(userId));
-  }, [dispatch]);
+  }, []);
 
   return (
   // eslint-disable-next-line no-nested-ternary
     isLoading
       ? <CircularProgress className={classes.circularProgress} size={100} />
-      : (userCharacter
+      : userCharacter
         ? <CharacterInfo />
-        : <CharacterCreation userId={userId} />)
+        : <CharacterCreation userId={userId} />
   );
 };
 

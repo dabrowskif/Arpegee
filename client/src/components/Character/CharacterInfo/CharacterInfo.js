@@ -41,6 +41,7 @@ const CharacterInfo = () => {
 
   useEffect(() => {
     checkCharacter();
+    // TODO is this needed \/ ?
   }, [userCharacter, rankingCharacter, character]);
 
   return (

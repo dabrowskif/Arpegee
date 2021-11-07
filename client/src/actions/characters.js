@@ -3,8 +3,8 @@ import {
   UPDATE_CHARACTER,
   CREATE_CHARACTER,
   GET_CHARACTER,
-  START_LOADING,
-  END_LOADING,
+  START_LOADING_CHARACTER,
+  END_LOADING_CHARACTER,
 } from '../constants/actionTypes.js';
 
 export const createCharacter = (formData, history) => async (dispatch) => {
@@ -19,10 +19,10 @@ export const createCharacter = (formData, history) => async (dispatch) => {
 
 export const getCharacter = (userId) => async (dispatch) => {
   try {
-    dispatch({ type: START_LOADING });
-    const { data } = await api.getCharacter({ userId });
+    dispatch({ type: START_LOADING_CHARACTER });
+    const { data } = await api.getCharacter(userId);
     dispatch({ type: GET_CHARACTER, payload: data.result });
-    dispatch({ type: END_LOADING });
+    dispatch({ type: END_LOADING_CHARACTER });
   } catch (error) {
     console.log(error);
   }

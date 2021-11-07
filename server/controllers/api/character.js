@@ -1,68 +1,36 @@
-import mongoose from 'mongoose';
-import Character from '../models/character.js';
-import {
-  characterDamageFormula,
-  characterDefenseFormula,
-  characterHealthpointsFormula, experienceRequiredForLevel, totalExperienceRequiredForLevel,
-} from './formulas/formulas.js';
-import { levelUp } from './fights/actions/character.js';
+import Character from '../../models/character.js';
+import { levelUp } from '../fights/actions/character.js';
+import { dbCreateCharacter, dbGetCharacterByUserId, dbUpdateCharacter } from './databaseActions/character.js';
+import { isIdValid } from './databaseActions/generic.js';
 
 export const createCharacter = async (req, res) => {
   const { nickname, vocation, userId } = req.body;
-  console.log(`createCharacter for user ${userId}`);
+  console.log(`createCharacter - userId: ${userId}`);
 
-  const existingCharacter = await Character.findOne({ userId });
-  if (existingCharacter) {
-    return res.status(404).json({ message: 'You have already created a character!' });
-  }
-
-  const statistics = setVocationStatistics(vocation);
   try {
-    const newCharacter = await Character.create({
-      userId,
-      nickname,
-      vocation,
-      statistics,
-      level: 1,
-      experience: 0,
-      experienceToLevelDown: experienceRequiredForLevel(1),
-      experienceToLevelUp: experienceRequiredForLevel(2),
-      totalExperienceToLevelUp: totalExperienceRequiredForLevel(2),
-      healthpoints: characterHealthpointsFormula(1, vocation),
-      maxHealthpoints: characterHealthpointsFormula(1, vocation),
-      damage: characterDamageFormula(1),
-      defense: characterDefenseFormula(1),
-    });
+    const existingCharacter = await dbGetCharacterByUserId(userId);
+    if (existingCharacter) {
+      return res.status(404).json({ message: 'You have already created a character!' });
+    }
 
-    res.status(200).json({ result: newCharacter });
+    const newCharacter = await dbCreateCharacter(nickname, vocation, userId);
+
+    res.status(201).json({ result: newCharacter });
   } catch (error) {
     res.status(500).json({ message: error });
   }
 };
 
-function setVocationStatistics(vocation) {
-  switch (vocation) {
-    case 'warrior':
-      return { strength: 10, dexterity: 0, intelligence: 0 };
-    case 'mage':
-      return { strength: 0, dexterity: 0, intelligence: 10 };
-    case 'berserker':
-      return { strength: 0, dexterity: 10, intelligence: 0 };
-    default:
-      return { strength: 0, dexterity: 0, intelligence: 0 };
-  }
-}
-
 export const getCharacter = async (req, res) => {
-  const { userId } = req.body;
+  const { userId } = req.params;
   console.log(`getCharacter with userId: ${userId}`);
 
   try {
-    let character = await Character.findOne({ userId });
-
+    const character = await dbGetCharacterByUserId(userId);
+    // NOT for production
     // if any field is added to the character schema during the development process, change this function
     // to insert it into the existing characters here.
-    character = await updateNewChanges(character);
+    // character = await updateNewChanges(character);
 
     res.status(200).json({ result: character });
   } catch (error) {
@@ -70,7 +38,7 @@ export const getCharacter = async (req, res) => {
   }
 };
 
-// eslint-disable-next-line arrow-body-style
+// eslint-disable-next-line arrow-body-style,no-unused-vars
 const updateNewChanges = async (character) => {
   // For example, if healthpoints was recently added to the character model, "if statement" uploads it to all existing characters.
   // Change healthpoints to any newly added field.
@@ -82,14 +50,17 @@ const updateNewChanges = async (character) => {
 };
 
 export const updateCharacter = async (req, res) => {
-  const updatedCharacter = req.body;
-  console.log(`updateCharacter for userId ${updatedCharacter.userId}`);
+  const character = req.body;
+  console.log(`updateCharacter - characterId: ${character._id}`);
 
   try {
-    if (!mongoose.Types.ObjectId.isValid(updatedCharacter._id)) return res.status(404).send(`No character with id: ${updatedCharacter.userId}`);
+    if (!isIdValid(character._id)) {
+      return res.status(404).send(`No character with id: ${character._id}`);
+    }
 
-    const newCharacter = await Character.findByIdAndUpdate(updatedCharacter._id, updatedCharacter, { new: true });
-    res.status(200).json({ result: newCharacter });
+    const updatedCharacter = await dbUpdateCharacter(character);
+
+    res.status(200).json({ result: updatedCharacter });
   } catch (error) {
     res.status(500).json({ message: error });
   }
@@ -98,11 +69,12 @@ export const updateCharacter = async (req, res) => {
 // TODO just for button testing purposes, should be deleted in 1.0 version
 export const increaseStatistic = async (req, res) => {
   const { statistic, value, characterId } = req.body;
-  console.log(`updating ${statistic} by ${value} for character with id ${characterId} `);
+  console.log(`increaseStatistic -  characterId ${characterId} `);
 
   try {
-    if (!mongoose.Types.ObjectId.isValid(characterId)) return res.status(404).send(`No character with id: ${characterId}`);
-
+    if (!isIdValid(characterId)) {
+      return res.status(404).send(`No character with id: ${characterId}`);
+    }
     let updatedCharacter = null;
 
     if (statistic === 'level') {
@@ -121,7 +93,6 @@ export const increaseStatistic = async (req, res) => {
       updatedCharacter = await Character.findByIdAndUpdate(characterId, { $inc: { experience: Number(value) } }, { new: true });
 
       if (updatedCharacter.experience > updatedCharacter.totalExperienceToLevelUp) {
-        console.log(updatedCharacter.experience, updatedCharacter.totalExperienceToLevelUp);
         updatedCharacter = await Character.findByIdAndUpdate(characterId, { experience: updatedCharacter.totalExperienceToLevelUp - 1 }, { new: true });
       }
 

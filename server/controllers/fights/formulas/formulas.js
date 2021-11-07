@@ -4,7 +4,7 @@ import {
   MAGE_HP_PER_LEVEL,
   WARRIOR,
   WARRIOR_HP_PER_LEVEL,
-} from '../constants/playerConstants.js';
+} from '../../constants/playerConstants.js';
 
 // experience required to advance from 'level - 1' to 'level'
 export const experienceRequiredForLevel = (level) => {

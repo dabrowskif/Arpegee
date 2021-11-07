@@ -1,8 +1,8 @@
 import * as api from '../api';
 import {
-  END_LOADING,
+  END_LOADING_CHARACTER,
   END_LOADING_RANKING,
-  GET_RANKING, GET_RANKING_CHARACTER, START_LOADING,
+  GET_RANKING, GET_RANKING_CHARACTER, START_LOADING_CHARACTER,
   START_LOADING_RANKING,
 } from '../constants/actionTypes.js';
 
@@ -30,10 +30,10 @@ export const getRankingByFilter = (filter, page) => async (dispatch) => {
 
 export const getRankingCharacter = (characterId, history) => async (dispatch) => {
   try {
-    dispatch({ type: START_LOADING });
+    dispatch({ type: START_LOADING_CHARACTER });
     const { data } = await api.getRankingCharacter(characterId);
     dispatch({ type: GET_RANKING_CHARACTER, data });
-    dispatch({ type: END_LOADING });
+    dispatch({ type: END_LOADING_CHARACTER });
     history.push(`/character/${data.result._id}`);
   } catch (error) {
     console.log(error);

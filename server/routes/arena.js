@@ -1,13 +1,13 @@
 import express from 'express';
 import {
   createMonster, fightMonster, getMonsters, resetMonsters,
-} from '../controllers/arena.js';
+} from '../controllers/api/arena.js';
 
 const router = express.Router();
 
-router.post('/create/arena', createMonster);
+router.post('/create/monster', createMonster);
 router.get('/get/monsters', getMonsters);
-router.get('/reset/monsters', resetMonsters);
-router.post('/fight/monster', fightMonster);
+router.patch('/reset/monsters', resetMonsters);
+router.patch('/fight/monster/:monsterId', fightMonster);
 
 export default router;

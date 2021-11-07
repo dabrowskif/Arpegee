@@ -5,9 +5,9 @@ import {
   monsterDefenseFormula,
   monsterExperienceOnKillFormula,
   monsterHealthpointsFormula,
-} from '../../formulas/formulas.js';
+} from '../../fights/formulas/formulas.js';
 
-export const generateNewMonster = (characterLevel, characterId) => {
+export const dbCreateMonster = async (characterLevel, characterId) => {
   const type = generateType();
   const subtype = generateSubtype();
   const level = generateLevel(characterLevel);
@@ -19,7 +19,7 @@ export const generateNewMonster = (characterLevel, characterId) => {
     experienceOnKill,
   } = generateStatistics(level, subtype, enhancementMultiplier);
 
-  return new Monster({
+  const monster = new Monster({
     type,
     subtype,
     level,
@@ -29,6 +29,10 @@ export const generateNewMonster = (characterLevel, characterId) => {
     experienceOnKill,
     characterId,
   });
+
+  await monster.save();
+
+  return monster;
 };
 
 const generateType = () => {

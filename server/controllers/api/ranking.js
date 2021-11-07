@@ -1,4 +1,4 @@
-import Character from '../models/character.js';
+import Character from '../../models/character.js';
 
 export const getRanking = async (req, res) => {
   console.log('getRanking');

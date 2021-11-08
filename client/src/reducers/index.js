@@ -23,6 +23,9 @@ const persistConfig = {
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
+// line 29 works on all browsers, line 30 doesn't work with firefox
+// redux devtools is not for production! Use for testing purposes
+
 // const store = createStore(persistedReducer);
 const store = createStore(persistedReducer, compose(applyMiddleware(thunk), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()));
 const persistor = persistStore(store);

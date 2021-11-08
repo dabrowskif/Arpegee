@@ -37,13 +37,13 @@ const CharactersFilter = ({ handleFilterChange, handleFilterSubmit, handleFilter
             </RadioGroup>
             <Divider textAlign="left">Level range</Divider>
             <Grid container className={classes.levelRangeGrid}>
-              <Grid item xs={5}>
+              <Grid item xs={5} sm={12} md={5}>
                 <TextField name="minLevel" label="1" onChange={handleFilterChange} />
               </Grid>
-              <Grid item xs={2}>
+              <Grid item xs={2} sm={12} md={2}>
                 <Typography align="center">to</Typography>
               </Grid>
-              <Grid item xs={5}>
+              <Grid item xs={5} sm={12} md={5}>
                 <TextField name="maxLevel" variant="outlined" label="999" onChange={handleFilterChange} />
               </Grid>
             </Grid>

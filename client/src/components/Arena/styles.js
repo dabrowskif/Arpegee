@@ -7,7 +7,9 @@ export default makeStyles((theme) => ({
     // backgroundColor: 'red',
   },
   paperPlayer: {
-    height: '373px',
+    [theme.breakpoints.up('md')]: {
+      height: '373px',
+    },
     padding: theme.spacing(2),
   },
   paperOpponents: {
@@ -17,11 +19,13 @@ export default makeStyles((theme) => ({
     height: '186px',
   },
   paperPlayerActions: {
-    height: '100%',
+    height: '186px',
   },
   paperFightLogs: {
-    marginTop: '16px',
-    height: '608px',
+    [theme.breakpoints.up('lg')]: {
+      height: '608px',
+      marginTop: '16px',
+    },
     overflow: 'auto',
     '&::-webkit-scrollbar': {
       backgroundColor: '#1A1A1D',

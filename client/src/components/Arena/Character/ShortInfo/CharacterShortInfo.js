@@ -16,9 +16,9 @@ const CharacterShortInfo = ({ character }) => {
         <InfoRow xs={12} name="healthpoints" shouldDisplayBar shouldDisplayName minValue={0} currentValue={character?.healthpoints} maxValue={character?.maxHealthpoints} />
         <InfoRow xs={12} name="experience" shouldDisplayBar shouldDisplayName minValue={0} currentValue={character?.experience - character?.totalExperienceToLevelUp + character?.experienceToLevelUp} maxValue={character?.experienceToLevelUp} />
         <Divider sx={{ width: '100%', height: '20px', borderColor: '#531516' }} />
-        <InfoRow xs={12} sm={12} name="level" currentValue={character?.level} shouldDisplayName />
-        <InfoRow xs={12} sm={12} name="damage" currentValue={character?.damage} shouldDisplayName />
-        <InfoRow xs={12} sm={12} name="defense" currentValue={character?.defense} shouldDisplayName />
+        <InfoRow xs={12} sm={4} md={12} name="level" currentValue={character?.level} shouldDisplayName />
+        <InfoRow xs={12} sm={4} md={12} name="damage" currentValue={character?.damage} shouldDisplayName />
+        <InfoRow xs={12} sm={4} md={12} name="defense" currentValue={character?.defense} shouldDisplayName />
       </Grid>
     </Grid>
   );

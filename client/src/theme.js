@@ -16,11 +16,10 @@ const theme = createTheme({
   breakpoints: {
     values: {
       xs: 0,
-      sm: 600,
+      sm: 660,
       md: 900,
       lg: 1200,
-      xl: 1536,
-      // arena: 1700,
+      xl: 1560,
     },
   },
   typography: {

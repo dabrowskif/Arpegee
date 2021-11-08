@@ -30,14 +30,14 @@ const Arena = () => {
     <Grow in>
       <Container maxWidth="xl">
         <Grid container className={classes.mainGrid} spacing={2}>
-          <Grid item xs={9}>
+          <Grid item lg={9}>
             <Grid container spacing={2}>
-              <Grid item xs={4}>
+              <Grid item xs={12} md={4}>
                 <Paper elevation={5} className={classes.paperPlayer}>
                   <CharacterShortInfo character={character} />
                 </Paper>
               </Grid>
-              <Grid item xs={8}>
+              <Grid item xs={12} md={8}>
                 <Paper elevation={5} className={classes.paperOpponents}>
                   <Opponents characterId={character?._id} characterLevel={character?.level} />
                   <div className={classes.resetButton}>
@@ -46,19 +46,19 @@ const Arena = () => {
                   </div>
                 </Paper>
               </Grid>
-              <Grid item xs={4}>
+              <Grid item xs={12} md={4}>
                 <Paper elevation={5} className={classes.paperMonsterDetails}>
                   Monster details
                 </Paper>
               </Grid>
-              <Grid item xs={8}>
+              <Grid item xs={12} md={8}>
                 <Paper elevation={5} className={classes.paperPlayerActions}>
                   Player actions
                 </Paper>
               </Grid>
             </Grid>
           </Grid>
-          <Grid item xs={3}>
+          <Grid item lg={3}>
             <Paper elevation={5} className={classes.paperFightLogs}>
               <FightLog />
             </Paper>

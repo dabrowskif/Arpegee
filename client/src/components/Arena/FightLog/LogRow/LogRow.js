@@ -1,5 +1,6 @@
 import React from 'react';
-import { Grid, Typography } from '@mui/material';
+// eslint-disable-next-line no-unused-vars
+import { Divider, Grid, Typography } from '@mui/material';
 
 import useStyles from './styles.js';
 
@@ -7,18 +8,20 @@ const LogRow = ({ roundNumber, roundInfo }) => {
   const classes = useStyles();
 
   return (
-    <Grid container className={classes.logRow}>
-      <Grid item xs={2} backgroundColor={setBackgroundColor(roundNumber)}>
-        <Typography>
-          Round
-          {' '}
-          {roundNumber}
-        </Typography>
-      </Grid>
-      <Grid item xs={10} backgroundColor={setBackgroundColor(roundNumber)}>
-        <Typography textAlign="center">{logOutput(roundInfo)}</Typography>
+    <Grid item xs={12} className={classes.logRow}>
+      <Grid container>
+        <Grid item xs={2} backgroundColor={setBackgroundColor(roundNumber)}>
+          <Typography textAlign="center">{roundNumber}</Typography>
+        </Grid>
+        <Grid item xs={10} backgroundColor={setBackgroundColor(roundNumber)}>
+          <Typography textAlign="justify">{logOutput(roundInfo)}</Typography>
+        </Grid>
+        <Grid item xs={12} className={classes.divider}>
+          <Divider sx={{ width: '100%', height: '5px', borderColor: '#531516' }} />
+        </Grid>
       </Grid>
     </Grid>
+
   );
 };
 
@@ -33,9 +36,9 @@ const logOutput = (roundInfo) => (
 const setBackgroundColor = (roundNumber) => {
   // TODO make nice colors for display
   if (roundNumber % 2) {
-    return '#F2F2F2';
+    return '#1A1A1D';
     // return '#ebf6f9'
   }
-  return '#FFFFFF';
+  return '#1A1A1D';
   // return '#E8E8E8';
 };

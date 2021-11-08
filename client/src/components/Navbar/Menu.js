@@ -7,7 +7,9 @@ import {
 import FaceIcon from '@mui/icons-material/Face';
 import Item from './Item.js';
 
-const Menu = ({ user, logout, toggleDrawer, className, itemClassName }) => (
+const Menu = ({
+  user, logout, toggleDrawer, className, itemClassName,
+}) => (
   <>
     {
       user?.result

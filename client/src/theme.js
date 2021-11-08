@@ -13,6 +13,16 @@ const SECONDARY_DARK = '#531516';
 const SECONDARY_CONTRAST = '#FFFFFF';
 
 const theme = createTheme({
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 900,
+      lg: 1200,
+      xl: 1536,
+      // arena: 1700,
+    },
+  },
   typography: {
     textColor: PRIMARY_CONTRAST,
     fontFamily: font,
@@ -44,6 +54,13 @@ const theme = createTheme({
         },
       },
     },
+    MuiListItemButton: {
+      styleOverrides: {
+        divider: {
+          borderColor: SECONDARY_DARK,
+        },
+      },
+    },
     MuiCircularProgress: {
       styleOverrides: {
         root: {
@@ -55,6 +72,13 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           backgroundColor: PRIMARY_MAIN,
+        },
+      },
+    },
+    MuiGrid: {
+      styleOverrides: {
+        root: {
+          marginTop: '0px',
         },
       },
     },

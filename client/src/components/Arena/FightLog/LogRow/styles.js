@@ -1,7 +1,10 @@
 import { makeStyles } from '@mui/styles';
 
-export default makeStyles(() => ({
+export default makeStyles((theme) => ({
   logRow: {
-    justifyContent: 'center',
+    padding: theme.spacing(1),
+  },
+  divider: {
+    marginTop: '10px',
   },
 }));

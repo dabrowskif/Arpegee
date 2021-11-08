@@ -1,5 +1,7 @@
 import React from 'react';
-import { Button, Divider, FormControl, FormControlLabel, Grid, Paper, Radio, RadioGroup, TextField, Typography } from '@mui/material';
+import {
+  Button, Divider, FormControl, FormControlLabel, Grid, Paper, Radio, RadioGroup, TextField, Typography,
+} from '@mui/material';
 import useStyles from './styles.js';
 
 const CharactersFilter = ({ handleFilterChange, handleFilterSubmit, handleFilterReset }) => {

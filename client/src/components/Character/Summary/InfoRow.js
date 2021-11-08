@@ -14,7 +14,9 @@ import useStyles from './styles.js';
 import ValueBar from './ValueBar.js';
 
 // TODO Refactor this component (DRY and unnecessary props)
-const InfoRow = ({ xs, sm, md, justifyContent, shouldDisplayBar, shouldDisplayName, name, minValue, maxValue, currentValue }) => {
+const InfoRow = ({
+  xs, sm, md, justifyContent, shouldDisplayBar, shouldDisplayName, name, minValue, maxValue, currentValue,
+}) => {
   const classes = useStyles();
 
   const display = () => {
@@ -40,7 +42,7 @@ const InfoRow = ({ xs, sm, md, justifyContent, shouldDisplayBar, shouldDisplayNa
               : (
                 <Typography whiteSpace="nowrap" variant="h6">
                   {' '}
-                  {shouldDisplayName ? `HP:${currentValue}` : currentValue}
+                  {shouldDisplayName ? `HP: ${currentValue}` : currentValue}
                   {' '}
                 </Typography>
               )}
@@ -56,7 +58,7 @@ const InfoRow = ({ xs, sm, md, justifyContent, shouldDisplayBar, shouldDisplayNa
               : (
                 <Typography variant="h6">
                   {' '}
-                  {shouldDisplayName ? `XP:${currentValue}` : currentValue}
+                  {shouldDisplayName ? `XP: ${currentValue}` : currentValue}
                   {' '}
                 </Typography>
               )}

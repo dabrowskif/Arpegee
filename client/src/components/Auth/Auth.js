@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { GoogleLogin } from 'react-google-login';
 import { useDispatch } from 'react-redux';
-import { Avatar, Button, CircularProgress, Container, Grid, Grow, Paper, Typography } from '@mui/material';
+import {
+  Avatar, Button, CircularProgress, Container, Grid, Grow, Paper, Typography,
+} from '@mui/material';
 import LockIcon from '@mui/icons-material/Lock';
 import { useHistory } from 'react-router-dom';
 
@@ -12,7 +14,9 @@ import useStyles from './styles.js';
 import { signin, signup } from '../../actions/auth.js';
 import { getCharacter } from '../../actions/characters.js';
 
-const initialState = { name: '', email: '', password: '', id: '' };
+const initialState = {
+  name: '', email: '', password: '', id: '',
+};
 
 const Auth = () => {
   const classes = useStyles();

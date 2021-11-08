@@ -8,7 +8,7 @@ import Home from './components/Home/Home.js';
 import Auth from './components/Auth/Auth.js';
 import Ranking from './components/Ranking/Ranking.js';
 import Character from './components/Character/Character.js';
-import CharacterInfo from './components/Character/CharacterInfo/CharacterInfo.js';
+import CharacterSummary from './components/Character/Summary/CharacterSummary.js';
 import Arena from './components/Arena/Arena.js';
 
 const App = () => {
@@ -20,7 +20,7 @@ const App = () => {
     dispatch({type: 'LOGOUT_CHARACTER' }); */
 
   return (
-    <Container>
+    <Container maxWidth="xl">
       <Navbar />
       <Toolbar />
       <Toolbar />
@@ -32,7 +32,7 @@ const App = () => {
         <Route path="/ranking/search" exact component={Ranking} />
         <Route path="/arena" exact component={user ? Arena : () => <Redirect to="/auth" />} />
         <Route path="/character" exact component={user ? Character : () => <Redirect to="/auth" />} />
-        <Route path="/character/:id" exact component={CharacterInfo} />
+        <Route path="/character/:id" exact component={CharacterSummary} />
       </Switch>
     </Container>
   );

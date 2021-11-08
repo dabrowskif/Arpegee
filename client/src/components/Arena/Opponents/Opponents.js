@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { CircularProgress, Container, Grid } from '@mui/material';
+import { CircularProgress, Grid } from '@mui/material';
 
 import useStyles from './styles.js';
 import Opponent from './Opponent/Opponent.js';
@@ -18,15 +18,13 @@ const Opponents = () => {
   }, []);
 
   return (
-    <Container component="main" maxWidth="md">
-      <Grid container className={classes.mainGrid} spacing={3}>
-        {arena?.isLoading
-          ? <CircularProgress className={classes.circularProgress} size={100} />
-          : (arena?.monsters.map((monster, index) => (arena?.isMonsterLoading[index]
-            ? <CircularProgress key={monster?._id} className={classes.circularProgress} size={50} />
-            : <Opponent key={monster?._id} index={index} monster={monster} />)))}
-      </Grid>
-    </Container>
+    <Grid container className={classes.mainGrid} spacing={3}>
+      {arena?.isLoading
+        ? <CircularProgress className={classes.circularProgress} size={100} />
+        : (arena?.monsters.map((monster, index) => (arena?.isMonsterLoading[index]
+          ? <CircularProgress key={monster?._id} className={classes.circularProgress} size={50} />
+          : <Opponent key={monster?._id} index={index} monster={monster} />)))}
+    </Grid>
   );
 };
 

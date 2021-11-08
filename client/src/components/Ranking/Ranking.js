@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { CircularProgress, Container, Grid, Grow } from '@mui/material';
+import {
+  CircularProgress, Container, Grid, Grow,
+} from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
 
@@ -20,7 +22,9 @@ const Ranking = () => {
   const history = useHistory();
 
   const [isFiltering, setIsFiltering] = useState(false);
-  const [filter, setFilter] = useState({ nickname: '', vocation: 'all', minLevel: 1, maxLevel: 999 });
+  const [filter, setFilter] = useState({
+    nickname: '', vocation: 'all', minLevel: 1, maxLevel: 999,
+  });
 
   const page = query?.get('page') || 1;
 
@@ -36,7 +40,9 @@ const Ranking = () => {
   };
 
   const handleFilterReset = () => {
-    setFilter({ ...filter, vocation: 'all', nickname: '', minLevel: 1, maxLevel: 999 });
+    setFilter({
+      ...filter, vocation: 'all', nickname: '', minLevel: 1, maxLevel: 999,
+    });
     setIsFiltering(false);
     dispatch(getRanking(1));
     history.push('/ranking?page=1');
@@ -61,7 +67,7 @@ const Ranking = () => {
 
   return (
     <Grow in>
-      <Container maxWidth="xl">
+      <Container maxWidth="lg">
         <Grid className={classes.mainGrid} container>
           <Grid className={classes.filter} item xs={12} sm={4}>
             <CharactersFilter handleFilterChange={handleFilterChange} handleFilterSubmit={handleFilterSubmit} handleFilterReset={handleFilterReset} />

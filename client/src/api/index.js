@@ -19,8 +19,7 @@ export const updateCharacter = (updatedCharacter) => API.patch('/character/updat
 export const increaseStatistic = (statistic, value, characterId) => API.patch('/character/statistics/increase', { statistic, value, characterId });
 
 export const getRanking = (page) => API.get(`/ranking/get?page=${page}`);
-// TODO change getRankingCharacter endpoint
-export const getRankingCharacter = (characterId) => API.get(`/character/${characterId}`);
+export const getRankingCharacter = (characterId) => API.get(`/ranking/character/${characterId}`);
 export const getRankingByFilter = (filter, page) => API.get(`/ranking/search?page=${page}&nickname=${filter.nickname}&vocation=${filter.vocation}&minlevel=${filter.minLevel}&maxlevel=${filter.maxLevel}`);
 
 export const createMonster = (characterId) => API.post('/arena/create/monster', characterId);

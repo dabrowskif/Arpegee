@@ -4,7 +4,9 @@ import {
 } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 
-const Input = ({ name, handleChange, label, half, autoFocus, type, handleShowPassword }) => (
+const Input = ({
+  name, handleChange, label, half, autoFocus, type, handleShowPassword,
+}) => (
   <Grid item xs={12} sm={half ? 6 : 12}>
     <TextField
       name={name}
@@ -24,7 +26,8 @@ const Input = ({ name, handleChange, label, half, autoFocus, type, handleShowPas
                   <Visibility sx={{ color: '#FFFFFF' }} />
                 ) : <VisibilityOff /> }
               </IconButton>
-            </InputAdornment>) }
+            </InputAdornment>),
+        }
         : null}
     />
   </Grid>

@@ -19,7 +19,7 @@
         "react"
     ],
     "rules": {
-        //TODO check meaningfulness of this rule
+        //TODO check meaningfulness of react/prop-types rule
         "react/prop-types": "off",
         "no-underscore-dangle": "off",
         "consistent-return": "off",
@@ -28,7 +28,7 @@
         "no-use-before-define": "off",
         "import/extensions": "off",
         "import/prefer-default-export": "off",
-        "object-curly-newline": "off",
+        // "object-curly-newline": "off",
         "react/jsx-filename-extension": "off",
         // TODO think about changing some of them
         "react/no-array-index-key": "warn",

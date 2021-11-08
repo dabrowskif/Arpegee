@@ -1,13 +1,17 @@
 import React from 'react';
-import { Grid, List, ListItem, ListItemButton, ListItemText, Paper } from '@mui/material';
+import {
+  Grid, List, ListItem, ListItemButton, ListItemText, Paper,
+} from '@mui/material';
 import { useSelector } from 'react-redux';
+
 import CharacterRow from './CharacterRow.js';
+import useStyles from './styles';
 
 const CharactersList = () => {
   const { list } = useSelector((state) => state?.ranking) || [];
-
+  const classes = useStyles();
   return (
-    <Paper elevation={5}>
+    <Paper elevation={5} className={classes.paper}>
       <List>
         <Grid container>
           <ListItem>

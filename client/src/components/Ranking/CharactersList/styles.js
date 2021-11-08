@@ -6,4 +6,7 @@ export default makeStyles((theme) => ({
       flexDirection: 'column-reverse',
     },
   },
+  paper: {
+    height: '100%',
+  },
 }));

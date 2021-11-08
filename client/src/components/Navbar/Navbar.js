@@ -4,7 +4,9 @@ import MenuIcon from '@mui/icons-material/Menu';
 
 import { useDispatch } from 'react-redux';
 import { Link, useHistory, useLocation } from 'react-router-dom';
-import { AppBar, Avatar, IconButton, SwipeableDrawer, Toolbar, Typography } from '@mui/material';
+import {
+  AppBar, Avatar, IconButton, SwipeableDrawer, Toolbar, Typography,
+} from '@mui/material';
 import GamepadIcon from '@mui/icons-material/Gamepad';
 import Menu from './Menu.js';
 import { LOGOUT, LOGOUT_CHARACTER } from '../../constants/actionTypes.js';

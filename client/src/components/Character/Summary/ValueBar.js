@@ -1,7 +1,9 @@
 import React from 'react';
 import { Grid, LinearProgress, Typography } from '@mui/material';
 
-const ValueBar = ({ primaryColor, secondaryColor, currentValue, minValue, maxValue }) => {
+const ValueBar = ({
+  primaryColor, secondaryColor, currentValue, minValue, maxValue,
+}) => {
   const normalise = (value) => {
     const percentValue = ((value - minValue) * 100) / (maxValue - minValue);
     if (percentValue > 100) return 100;

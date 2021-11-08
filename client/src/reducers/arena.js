@@ -7,7 +7,9 @@ import {
   START_LOADING_ARENA, START_LOADING_MONSTER,
 } from '../constants/actionTypes.js';
 
-const arena = (state = { monsters: [], isMonsterLoading: [], isLoading: true, lastFightLog: {} }, action) => {
+const arena = (state = {
+  monsters: [], isMonsterLoading: [], isLoading: true, lastFightLog: {},
+}, action) => {
   switch (action.type) {
     case START_LOADING_ARENA:
       return { ...state, isLoading: true };

@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { CircularProgress } from '@mui/material';
-import CharacterInfo from './CharacterInfo/CharacterInfo.js';
+import CharacterSummary from './Summary/CharacterSummary.js';
 import { getCharacter } from '../../actions/characters.js';
-import CharacterCreation from './CharacterCreation/CharacterCreation.js';
+import CharacterCreation from './Creation/CharacterCreation.js';
 
 import useStyles from './styles.js';
 
@@ -24,7 +24,7 @@ const Character = () => {
     isLoading
       ? <CircularProgress className={classes.circularProgress} size={100} />
       : userCharacter
-        ? <CharacterInfo />
+        ? <CharacterSummary />
         : <CharacterCreation userId={userId} />
   );
 };

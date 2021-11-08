@@ -11,12 +11,7 @@ export default makeStyles((theme) => ({
     borderRadius: '30px',
     backgroundColor: '#000000',
   },
-  svgBackground: {
-    backgroundImage: `url(${Image})`,
-    height: 'auto',
-    width: '100%',
-  },
   fightButton: {
-    marginTop: theme.spacing(1),
+    marginTop: theme.spacing(2),
   },
 }));

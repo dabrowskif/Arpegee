@@ -80,10 +80,8 @@ export const fightMonster = async (req, res) => {
     const characterBeforeFight = await dbGetCharacter(monster.characterId);
     const { characterAfterFight, fightLog } = fightCharacterVsMonster(characterBeforeFight, monster);
 
-    if (fightLog.didWin) {
-      await dbRemoveMonster(monsterId);
-      monster = await dbCreateMonster(Number(characterAfterFight.level), monster.characterId);
-    }
+    await dbRemoveMonster(monsterId);
+    monster = await dbCreateMonster(Number(characterAfterFight.level), monster.characterId);
 
     const updatedCharacter = await dbUpdateCharacter(characterAfterFight);
 

@@ -1,5 +1,5 @@
 import Character from '../../models/character.js';
-import { levelUp } from '../fights/actions/character.js';
+import { experienceUp } from '../fights/actions/character.js';
 import { dbCreateCharacter, dbGetCharacterByUserId, dbUpdateCharacter } from './databaseActions/character.js';
 import { isIdValid } from './databaseActions/generic.js';
 
@@ -23,7 +23,7 @@ export const createCharacter = async (req, res) => {
 
 export const getCharacter = async (req, res) => {
   const { userId } = req.params;
-  console.log(`getCharacter with userId: ${userId}`);
+  console.log(`getCharacter - userId: ${userId}`);
 
   try {
     const character = await dbGetCharacterByUserId(userId);
@@ -79,7 +79,7 @@ export const increaseStatistic = async (req, res) => {
 
     if (statistic === 'level') {
       const characterToUpdate = await Character.findById(characterId);
-      levelUp(characterToUpdate);
+      experienceUp(characterToUpdate);
       updatedCharacter = await Character.findByIdAndUpdate(characterId, characterToUpdate, { new: true });
 
       return res.status(200).json({ result: updatedCharacter });

@@ -8,7 +8,7 @@ export default makeStyles((theme) => ({
   },
   paperPlayer: {
     [theme.breakpoints.up('md')]: {
-      height: '373px',
+      height: '390px',
     },
     padding: theme.spacing(2),
   },
@@ -23,8 +23,11 @@ export default makeStyles((theme) => ({
   },
   paperFightLogs: {
     [theme.breakpoints.up('lg')]: {
-      height: '608px',
+      height: '624px',
       marginTop: '16px',
+    },
+    [theme.breakpoints.down('lg')]: {
+      maxHeight: '500px',
     },
     overflow: 'auto',
     '&::-webkit-scrollbar': {

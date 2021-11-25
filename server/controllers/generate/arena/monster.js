@@ -7,7 +7,7 @@ import {
   monsterDefenseFormula,
   monsterExperienceOnKillFormula,
   monsterHealthpointsFormula,
-} from '../../fights/formulas/formulas.js';
+} from '../../formulas/formulas.js';
 
 export const dbCreateMonster = async (characterLevel, characterId) => {
   const type = generateType();

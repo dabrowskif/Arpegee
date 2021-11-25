@@ -2,8 +2,8 @@
 [done] 1. Fix Arena panel, so that after refresh it still loads user's character.
 [done] 2. Split Arena Panel into smaller pieces (logs, arena and character should all get their own papers).
 3. Fix Ranking panel, so that after typing specific url query, it properly loads filtered data.
-4. Make use of Cookies.
-5. Refactor useStates and useEffect hooks (take cookies into account, remove unnecessary, etc.).
+[not-needed] 4. Make use of Cookies.
+[done] 5. Refactor useStates and useEffect hooks (take cookies into account, remove unnecessary, etc.).
 6. Make use of Auth Middleware.
 [partially done] 7. Fix API to be more secure (remove unnecessary transferred data, etc.).
 8. Implement equipment.
@@ -14,3 +14,6 @@
 13. Add some nice images / avatars for the items, spells and monsters.
 [done] 14. Fix monster values bug (exp, hp sometimes display incorrectly)
 15. Move dbCreateMonster to dbActions folder
+16. Change monster XP display in Arena - it's not displaying nicely when reaching high numbers.
+17. Create specific classes
+18. Convert to TypeScript

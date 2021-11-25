@@ -1,4 +1,5 @@
 import * as api from '../api';
+
 import {
   END_LOADING_ARENA, END_LOADING_MONSTER,
   GET_ARENA, REPLACE_MONSTER, SET_FIGHT_LOG,
@@ -47,13 +48,12 @@ export const fightMonster = (monsterId, index) => async (dispatch) => {
     dispatch({ type: START_LOADING_MONSTER, index });
 
     const { data } = await api.fightMonster(monsterId);
-    const { monster } = data.result;
-    const { updatedCharacter } = data.result;
-    const { fightLog } = data.result;
+    const { monster, updatedCharacter, fightLog } = data.result;
 
     dispatch({ type: REPLACE_MONSTER, payload: { monster, index } });
     dispatch({ type: END_LOADING_MONSTER, index });
     dispatch({ type: SET_FIGHT_LOG, payload: fightLog });
+
     await dispatch({ type: UPDATE_CHARACTER, payload: updatedCharacter });
   } catch (error) {
     console.log(error);

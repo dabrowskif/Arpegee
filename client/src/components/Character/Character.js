@@ -23,7 +23,7 @@ const Character = () => {
   // eslint-disable-next-line no-nested-ternary
     isLoading
       ? <CircularProgress className={classes.circularProgress} size={100} />
-      : userCharacter
+      : userCharacter.userId
         ? <CharacterSummary />
         : <CharacterCreation userId={userId} />
   );

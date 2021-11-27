@@ -1,19 +1,10 @@
 // TODO
-[done] 1. Fix Arena panel, so that after refresh it still loads user's character.
-[done] 2. Split Arena Panel into smaller pieces (logs, arena and character should all get their own papers).
-3. Fix Ranking panel, so that after typing specific url query, it properly loads filtered data.
-[not-needed] 4. Make use of Cookies.
-[done] 5. Refactor useStates and useEffect hooks (take cookies into account, remove unnecessary, etc.).
-6. Make use of Auth Middleware.
-[partially done] 7. Fix API to be more secure (remove unnecessary transferred data, etc.).
-8. Implement equipment.
-9. Implement talents and skill tree.
-10. Implement turn by turn fight mechanic, so that spells will be usable during the fight.
-11. Implement energy mechanic, so that player won't me able to fight infinitely.
-12. Implement PvP arena.
-13. Add some nice images / avatars for the items, spells and monsters.
-[done] 14. Fix monster values bug (exp, hp sometimes display incorrectly)
-15. Move dbCreateMonster to dbActions folder
-16. Change monster XP display in Arena - it's not displaying nicely when reaching high numbers.
-17. Create specific classes
-18. Convert to TypeScript
+1. Fix Ranking panel, so that after typing specific url query, it properly loads filtered data.
+2. Implement equipment.
+3. Implement talents and skill tree.
+4. Implement turn by turn fight mechanic, so that spells will be usable during the fight.
+5. Implement energy mechanic, so that player won't me able to fight infinitely.
+6. Implement PvP arena.
+[partially done] 7. Add some nice images / avatars for the items, spells and monsters.
+[partially-done] 8. Create specific classes for characters and items.
+9. Convert to TypeScript

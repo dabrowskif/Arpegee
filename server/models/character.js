@@ -52,34 +52,42 @@ const characterSchema = mongoose.Schema({
   statistics: {
     strength: {
       type: Number,
+      required: true,
     },
     dexterity: {
       type: Number,
+      required: true,
     },
     intelligence: {
       type: Number,
+      required: true,
     },
   },
-  equipment: {
-    helmet: {
-      type: String,
+  gold: {
+    type: Number,
+    required: true,
+  },
+  equippedItems: {
+    head: {
+      type: Object,
     },
-    chest: {
-      type: String,
+    body: {
+      type: Object,
     },
     legs: {
-      type: String,
+      type: Object,
     },
     boots: {
-      type: String,
+      type: Object,
+    },
+    hands: {
+      type: Object,
     },
     weapon1: {
-      type: String,
-    },
-    weapon2: {
-      type: String,
+      type: Object,
     },
   },
+  backpack: [],
 });
 
 export default mongoose.model('Character', characterSchema);

@@ -16,6 +16,7 @@ const theme = createTheme({
   breakpoints: {
     values: {
       xs: 0,
+      arenaMonsters: 480,
       sm: 660,
       md: 900,
       lg: 1200,

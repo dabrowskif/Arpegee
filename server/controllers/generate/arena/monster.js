@@ -1,4 +1,3 @@
-import Monster from '../../../models/monster.js';
 import {
   ARCHER, getSubtype, getType, MAGE, NUMBER_OF_SUBTYPES, NUMBER_OF_TYPES, WARRIOR,
 } from '../../constants/monsterConstants.js';
@@ -9,45 +8,17 @@ import {
   monsterHealthpointsFormula,
 } from '../../formulas/formulas.js';
 
-export const dbCreateMonster = async (characterLevel, characterId) => {
-  const type = generateType();
-  const subtype = generateSubtype();
-  const level = generateLevel(characterLevel);
-  const enhancementMultiplier = generateEnhancementMultiplier();
-  const {
-    healthpoints,
-    damage,
-    defense,
-    experienceOnKill,
-  } = generateStatistics(level, subtype, enhancementMultiplier);
-
-  const monster = new Monster({
-    type,
-    subtype,
-    level,
-    healthpoints,
-    damage,
-    defense,
-    experienceOnKill,
-    characterId,
-  });
-
-  await monster.save();
-
-  return monster;
-};
-
-const generateType = () => {
+export const generateType = () => {
   const index = generateRandomIntegerNumber(0, NUMBER_OF_TYPES);
   return getType(index);
 };
 
-const generateSubtype = () => {
+export const generateSubtype = () => {
   const index = generateRandomIntegerNumber(0, NUMBER_OF_SUBTYPES);
   return getSubtype(index);
 };
 
-const generateLevel = (characterLevel) => {
+export const generateLevel = (characterLevel) => {
   let minLevel;
   const maxLevel = characterLevel + 3;
 
@@ -57,13 +28,16 @@ const generateLevel = (characterLevel) => {
   return generateRandomIntegerNumber(minLevel, maxLevel);
 };
 
-const generateEnhancementMultiplier = () => generateRandomFloatNumber(0.7, 1.4);
+export const generateEnhancementMultiplier = () => generateRandomFloatNumber(0.7, 1.4);
 
-const generateStatistics = (level, subtype, enhancementMultiplier) => {
+export const generateStatistics = (level, subtype, enhancementMultiplier) => {
   const healthpoints = Math.floor(monsterHealthpointsFormula(level) * enhancementMultiplier);
   const damage = Math.floor(monsterDamageFormula(level) * enhancementMultiplier);
   const defense = Math.floor(monsterDefenseFormula(level) * enhancementMultiplier);
-  const experienceOnKill = Math.floor(monsterExperienceOnKillFormula(level) * enhancementMultiplier);
+  let experienceOnKill = Math.ceil(monsterExperienceOnKillFormula(level) * enhancementMultiplier);
+  if (experienceOnKill === 0) {
+    experienceOnKill = Math.floor(15 * enhancementMultiplier);
+  }
 
   switch (subtype) {
     case WARRIOR:

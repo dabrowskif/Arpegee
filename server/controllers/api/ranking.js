@@ -1,4 +1,4 @@
-import Character from '../../models/character.js';
+import CharacterModel from '../../models/character.js';
 
 export const getRanking = async (req, res) => {
   console.log('getRanking');
@@ -7,8 +7,8 @@ export const getRanking = async (req, res) => {
     const LIMIT = 8;
     const startIndex = (Number(page) - 1) * LIMIT;
 
-    const totalCharacters = await Character.countDocuments({});
-    const characters = await Character.find().sort({ level: -1 }).limit(LIMIT).skip(startIndex);
+    const totalCharacters = await CharacterModel.countDocuments({});
+    const characters = await CharacterModel.find().sort({ level: -1 }).limit(LIMIT).skip(startIndex);
 
     res.json({ data: characters, currentPage: Number(page), numberOfPages: Math.ceil(totalCharacters / LIMIT) });
   } catch (error) {
@@ -32,17 +32,17 @@ export const getRankingByFilter = async (req, res) => {
 
     // TODO probably it has better solution
     if (nickname === '' && vocation === 'all') {
-      totalRankingCharacters = await Character.countDocuments(Character.find({ level: { $gt: Number(minlevel) - 1, $lt: Number(maxlevel) + 1 } }));
-      ranking = await Character.find({ level: { $gt: Number(minlevel) - 1, $lt: Number(maxlevel) + 1 } }).sort({ level: -1 }).limit(LIMIT).skip(startIndex);
+      totalRankingCharacters = await CharacterModel.countDocuments(CharacterModel.find({ level: { $gt: Number(minlevel) - 1, $lt: Number(maxlevel) + 1 } }));
+      ranking = await CharacterModel.find({ level: { $gt: Number(minlevel) - 1, $lt: Number(maxlevel) + 1 } }).sort({ level: -1 }).limit(LIMIT).skip(startIndex);
     } else if (nickname !== '' && vocation === 'all') {
-      totalRankingCharacters = await Character.countDocuments(Character.find({ $and: [{ nickname: nicknameToLowerCase }, { level: { $gt: Number(minlevel) - 1, $lt: Number(maxlevel) + 1 } }] }));
-      ranking = await Character.find({ $and: [{ nickname: nicknameToLowerCase }, { level: { $gt: Number(minlevel) - 1, $lt: Number(maxlevel) + 1 } }] }).sort({ level: -1 }).limit(LIMIT).skip(startIndex);
+      totalRankingCharacters = await CharacterModel.countDocuments(CharacterModel.find({ $and: [{ nickname: nicknameToLowerCase }, { level: { $gt: Number(minlevel) - 1, $lt: Number(maxlevel) + 1 } }] }));
+      ranking = await CharacterModel.find({ $and: [{ nickname: nicknameToLowerCase }, { level: { $gt: Number(minlevel) - 1, $lt: Number(maxlevel) + 1 } }] }).sort({ level: -1 }).limit(LIMIT).skip(startIndex);
     } else if (nickname === '' && vocation !== 'all') {
-      totalRankingCharacters = await Character.countDocuments(Character.find({ $and: [{ vocation }, { level: { $gt: Number(minlevel) - 1, $lt: Number(maxlevel) + 1 } }] }));
-      ranking = await Character.find({ $and: [{ vocation }, { level: { $gt: Number(minlevel) - 1, $lt: Number(maxlevel) + 1 } }] }).sort({ level: -1 }).limit(LIMIT).skip(startIndex);
+      totalRankingCharacters = await CharacterModel.countDocuments(CharacterModel.find({ $and: [{ vocation }, { level: { $gt: Number(minlevel) - 1, $lt: Number(maxlevel) + 1 } }] }));
+      ranking = await CharacterModel.find({ $and: [{ vocation }, { level: { $gt: Number(minlevel) - 1, $lt: Number(maxlevel) + 1 } }] }).sort({ level: -1 }).limit(LIMIT).skip(startIndex);
     } else if (nickname !== '' && vocation !== 'all') {
-      totalRankingCharacters = await Character.countDocuments(Character.find({ $and: [{ nickname: nicknameToLowerCase }, { vocation }, { level: { $gt: Number(minlevel) - 1, $lt: Number(maxlevel) + 1 } }] }));
-      ranking = await Character.find({ $and: [{ nickname: nicknameToLowerCase }, { vocation }, { level: { $gt: Number(minlevel) - 1, $lt: Number(maxlevel) + 1 } }] }).sort({ level: -1 }).limit(LIMIT).skip(startIndex);
+      totalRankingCharacters = await CharacterModel.countDocuments(CharacterModel.find({ $and: [{ nickname: nicknameToLowerCase }, { vocation }, { level: { $gt: Number(minlevel) - 1, $lt: Number(maxlevel) + 1 } }] }));
+      ranking = await CharacterModel.find({ $and: [{ nickname: nicknameToLowerCase }, { vocation }, { level: { $gt: Number(minlevel) - 1, $lt: Number(maxlevel) + 1 } }] }).sort({ level: -1 }).limit(LIMIT).skip(startIndex);
     }
 
     res.json({ data: ranking, currentPage: Number(page), numberOfPages: Math.ceil(totalRankingCharacters / LIMIT) });
@@ -56,7 +56,7 @@ export const getRankingCharacter = async (req, res) => {
   console.log(`getRankingCharacter with id ${id}`);
 
   try {
-    const result = await Character.findById(id);
+    const result = await CharacterModel.findById(id);
 
     res.status(200).json({ result });
   } catch (error) {

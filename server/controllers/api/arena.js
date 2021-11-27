@@ -1,14 +1,14 @@
-import { dbCreateMonster } from '../generate/arena/monster.js';
 import { fightCharacterVsMonster } from '../fights/fights.js';
 import {
   dbGetMonster,
   dbRemoveMonster,
   dbGetMonsters,
   dbRefillMonsters,
-  dbDeleteAllMonsters,
-} from './databaseActions/arena.js';
-import { isIdValid } from './databaseActions/generic.js';
-import { dbGetCharacter, dbUpdateCharacter } from './databaseActions/character.js';
+  dbDeleteAllMonsters, dbCreateMonster,
+} from './databaseFunctions/arena.js';
+import { isIdValid } from './databaseFunctions/generic.js';
+import { dbGetCharacter, dbUpdateCharacter } from './databaseFunctions/character.js';
+import Character from '../classes/character.js';
 
 // TODO think about usefulness of this function
 export const createMonster = async (req, res) => {
@@ -77,11 +77,14 @@ export const fightMonster = async (req, res) => {
     }
 
     let monster = await dbGetMonster(monsterId);
-    const characterBeforeFight = await dbGetCharacter(monster.characterId);
-    const { characterAfterFight, fightLog } = fightCharacterVsMonster(characterBeforeFight, monster);
+    // const characterBeforeFight = await dbGetCharacter(monster.characterId);
+    const char = new Character(await dbGetCharacter(monster.characterId));
+
+    const { characterAfterFight, fightLog } = fightCharacterVsMonster(char, monster);
 
     await dbRemoveMonster(monsterId);
     monster = await dbCreateMonster(Number(characterAfterFight.level), monster.characterId);
+    console.log(characterAfterFight);
 
     const updatedCharacter = await dbUpdateCharacter(characterAfterFight);
 

@@ -12,12 +12,9 @@ import CharacterSummary from './components/Character/Summary/CharacterSummary.js
 import Arena from './components/Arena/Arena.js';
 
 const App = () => {
+  // const user = JSON.parse(localStorage.getItem('profile'));
   const user = useSelector((state) => state?.user?.authData?.result);
-
-  /* testing purposes
-    const dispatch = useDispatch();
-    dispatch({type: 'LOGOUT' });
-    dispatch({type: 'LOGOUT_CHARACTER' }); */
+  const character = useSelector((state) => state?.characters?.userCharacter);
 
   return (
     <Container maxWidth="xl">
@@ -30,7 +27,15 @@ const App = () => {
         <Route path="/auth" exact component={user ? () => <Redirect to="/home" /> : Auth} />
         <Route path="/ranking" exact component={Ranking} />
         <Route path="/ranking/search" exact component={Ranking} />
-        <Route path="/arena" exact component={user ? Arena : () => <Redirect to="/auth" />} />
+        <Route
+          path="/arena"
+          exact
+          component={user
+            ? character?.userId
+              ? Arena
+              : () => <Redirect to="/character" />
+            : () => <Redirect to="/auth" />}
+        />
         <Route path="/character" exact component={user ? Character : () => <Redirect to="/auth" />} />
         <Route path="/character/:id" exact component={CharacterSummary} />
       </Switch>

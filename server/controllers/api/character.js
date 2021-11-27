@@ -1,7 +1,12 @@
-import Character from '../../models/character.js';
-import { experienceUp } from '../fights/actions/character.js';
-import { dbCreateCharacter, dbGetCharacterByUserId, dbUpdateCharacter } from './databaseActions/character.js';
-import { isIdValid } from './databaseActions/generic.js';
+import CharacterModel from '../../models/character.js';
+import {
+  dbCreateCharacter,
+  dbGetCharacter,
+  dbGetCharacterByUserId,
+  dbUpdateCharacter,
+} from './databaseFunctions/character.js';
+import { isIdValid } from './databaseFunctions/generic.js';
+import Character from '../classes/character.js';
 
 export const createCharacter = async (req, res) => {
   const { nickname, vocation, userId } = req.body;
@@ -26,27 +31,16 @@ export const getCharacter = async (req, res) => {
   console.log(`getCharacter - userId: ${userId}`);
 
   try {
-    const character = await dbGetCharacterByUserId(userId);
-    // NOT for production
-    // if any field is added to the character schema during the development process, change this function
-    // to insert it into the existing characters here.
-    // character = await updateNewChanges(character);
+    // creating class instance and dbUpdateCharacter function is needed to update existing character to contain newly added props to a Character class.
+    const character = new Character(await dbGetCharacterByUserId(userId));
+    if (character.userId === undefined) {
+      await dbUpdateCharacter(character);
+    }
 
     res.status(200).json({ result: character });
   } catch (error) {
     res.status(500).json({ message: error });
   }
-};
-
-// eslint-disable-next-line arrow-body-style,no-unused-vars
-const updateNewChanges = async (character) => {
-  // For example, if healthpoints was recently added to the character model, "if statement" uploads it to all existing characters.
-  // Change healthpoints to any newly added field.
-  /* if (character.healthpoints === undefined) {
-    character.healthpoints = characterHealthpointsFormula(1, character.vocation);
-    character = await Character.findByIdAndUpdate(character._id, character);
-  } */
-  return character;
 };
 
 export const updateCharacter = async (req, res) => {
@@ -78,35 +72,37 @@ export const increaseStatistic = async (req, res) => {
     let updatedCharacter = null;
 
     if (statistic === 'level') {
-      const characterToUpdate = await Character.findById(characterId);
-      experienceUp(characterToUpdate);
-      updatedCharacter = await Character.findByIdAndUpdate(characterId, characterToUpdate, { new: true });
+      const characterToUpdate = new Character(await dbGetCharacter(characterId));
+
+      characterToUpdate.levelUp();
+
+      updatedCharacter = await CharacterModel.findByIdAndUpdate(characterId, characterToUpdate, { new: true });
 
       return res.status(200).json({ result: updatedCharacter });
     } if (statistic === 'healthpoints') {
-      updatedCharacter = await Character.findByIdAndUpdate(characterId, { $inc: { healthpoints: Number(value) } }, { new: true });
+      updatedCharacter = await CharacterModel.findByIdAndUpdate(characterId, { $inc: { healthpoints: Number(value) } }, { new: true });
 
-      if (updatedCharacter.healthpoints > updatedCharacter.maxHealthpoints) updatedCharacter = await Character.findByIdAndUpdate(characterId, { healthpoints: updatedCharacter.maxHealthpoints }, { new: true });
+      if (updatedCharacter.healthpoints > updatedCharacter.maxHealthpoints) updatedCharacter = await CharacterModel.findByIdAndUpdate(characterId, { healthpoints: updatedCharacter.maxHealthpoints }, { new: true });
 
       return res.status(200).json({ result: updatedCharacter });
     } if (statistic === 'experience') {
-      updatedCharacter = await Character.findByIdAndUpdate(characterId, { $inc: { experience: Number(value) } }, { new: true });
+      updatedCharacter = await CharacterModel.findByIdAndUpdate(characterId, { $inc: { experience: Number(value) } }, { new: true });
 
       if (updatedCharacter.experience > updatedCharacter.totalExperienceToLevelUp) {
-        updatedCharacter = await Character.findByIdAndUpdate(characterId, { experience: updatedCharacter.totalExperienceToLevelUp - 1 }, { new: true });
+        updatedCharacter = await CharacterModel.findByIdAndUpdate(characterId, { experience: updatedCharacter.totalExperienceToLevelUp - 1 }, { new: true });
       }
 
       return res.status(200).json({ result: updatedCharacter });
     }
     switch (statistic) {
       case 'dexterity':
-        updatedCharacter = await Character.findByIdAndUpdate(characterId, { $inc: { 'statistics.dexterity': Number(value) } }, { new: true });
+        updatedCharacter = await CharacterModel.findByIdAndUpdate(characterId, { $inc: { 'statistics.dexterity': Number(value) } }, { new: true });
         return res.status(200).json({ result: updatedCharacter });
       case 'intelligence':
-        updatedCharacter = await Character.findByIdAndUpdate(characterId, { $inc: { 'statistics.intelligence': Number(value) } }, { new: true });
+        updatedCharacter = await CharacterModel.findByIdAndUpdate(characterId, { $inc: { 'statistics.intelligence': Number(value) } }, { new: true });
         return res.status(200).json({ result: updatedCharacter });
       case 'strength':
-        updatedCharacter = await Character.findByIdAndUpdate(characterId, { $inc: { 'statistics.strength': Number(value) } }, { new: true });
+        updatedCharacter = await CharacterModel.findByIdAndUpdate(characterId, { $inc: { 'statistics.strength': Number(value) } }, { new: true });
         return res.status(200).json({ result: updatedCharacter });
       default:
         return res.status(200).json({ result: updatedCharacter });

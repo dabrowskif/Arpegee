@@ -7,7 +7,7 @@ export default function FightLogModal({ fightLog, open, handleClose }) {
   return (
     <div>
       <Modal
-        open={open}
+        open={open || false}
         onClose={handleClose}
       >
         <Box sx={{

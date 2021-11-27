@@ -36,6 +36,7 @@
         "no-return-assign": "warn",
         "no-param-reassign": "warn",
         "no-await-in-loop": "warn",
+        "no-nested-ternary": "warn",
         "react/jsx-props-no-spreading": "warn"
 
     }

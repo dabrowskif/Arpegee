@@ -3,29 +3,13 @@ import React from 'react';
 import { Button, Grid, Typography } from '@mui/material';
 import useStyles from './styles.js';
 import InfoRow from '../../../Character/Summary/InfoRow.js';
-import avatarSkeleton from '../../../../img/avatarSkeleton.png';
-import avatarZombie from '../../../../img/avatarZombie.png';
-import avatarSpider from '../../../../img/avatarSpider.png';
-import { SKELETON, SPIDER, ZOMBIE } from '../../../../constants/monsterConstants';
+import { setAvatar } from '../../../../img/imgFunctions';
 
 const Opponent = ({ monsterId, monsterIndex, monster, handleFightButton }) => {
   const classes = useStyles();
 
-  const setAvatar = (monsterType) => {
-    switch (monsterType) {
-      case ZOMBIE:
-        return avatarZombie;
-      case SKELETON:
-        return avatarSkeleton;
-      case SPIDER:
-        return avatarSpider;
-      default:
-        return null;
-    }
-  };
-
   return (
-    <Grid item xs={12} sm={4}>
+    <Grid item xs={12} md={4}>
       <Grid container className={classes.opponent}>
         <Grid item xs={6}><Typography variant="h5">{`${monster?.type} ${monster?.subtype}`}</Typography></Grid>
         <Grid item xs={6} className={classes.monsterAvatarGrid}><img src={setAvatar(monster?.type)} className={classes.monsterAvatar} alt="avatar" /></Grid>

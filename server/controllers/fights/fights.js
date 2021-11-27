@@ -1,6 +1,4 @@
-import { experienceDown, experienceUp } from './actions/character.js';
-import { isDead, performHit } from './actions/fight.js';
-import { totalExperienceRequiredForLevel } from '../formulas/formulas.js';
+import { isDead, performHit } from './fightsActions.js';
 
 // TODO equipment implementation and calculations
 // TODO spells and passives implementation and calculations
@@ -8,6 +6,7 @@ export const fightCharacterVsMonster = (character, monster) => {
   let fighter1 = character;
   let fighter2 = monster;
   let isCharacterAttacking = true;
+
   const fightLog = {
     roundLogs: [],
     didWin: false,
@@ -38,14 +37,14 @@ export const fightCharacterVsMonster = (character, monster) => {
   // if isCharacterAttacking statement is true in this case, that means that the character got killed.
   if (isCharacterAttacking) {
     fightLog.didWin = false;
-    const { newLevel, experienceLost } = experienceDown(fighter1);
+    const { newLevel, experienceLost } = fighter1.experienceDown();
     fightLog.newLevel = newLevel;
     fightLog.experienceLost = experienceLost;
 
     return { characterAfterFight: fighter1, fightLog };
   }
   fightLog.didWin = true;
-  const { newLevel, experienceGained } = experienceUp(fighter2, fighter1.experienceOnKill);
+  const { newLevel, experienceGained } = fighter2.experienceUp(fighter1.experienceOnKill);
   fightLog.newLevel = newLevel;
   fightLog.experienceGained = experienceGained;
   return { characterAfterFight: fighter2, fightLog };

@@ -77,7 +77,7 @@ const characterSchema = mongoose.Schema({
     legs: {
       type: Object,
     },
-    boots: {
+    feet: {
       type: Object,
     },
     hands: {

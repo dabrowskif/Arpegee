@@ -4,7 +4,7 @@ import {
   MAGE_HP_PER_LEVEL,
   WARRIOR,
   WARRIOR_HP_PER_LEVEL,
-} from '../constants/playerConstants.js';
+} from '../playerConstants.js';
 
 // experience required to advance from 'level - 1' to 'level'
 export const experienceRequiredForLevel = (level) => {
@@ -40,3 +40,5 @@ export const monsterExperienceOnKillFormula = (level) => Math.floor(experienceRe
 export const characterDamageFormula = (level) => level + 10;
 
 export const characterDefenseFormula = (level) => Math.floor(level / 2 + 5);
+
+export const itemGenericStatisticFormula = (level) => Math.floor((level + 10) / 10);

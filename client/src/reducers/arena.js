@@ -32,6 +32,7 @@ const arena = (state = {
     case SET_FIGHT_LOG:
       return { ...state, lastFightLog: action.payload };
     case LOGOUT_CHARACTER:
+      // eslint-disable-next-line no-return-assign,no-param-reassign
       return state = null;
     default:
       return state;

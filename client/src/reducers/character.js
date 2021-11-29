@@ -19,6 +19,7 @@ const character = (state = { userCharacter: {}, isLoading: true }, action) => {
     case UPDATE_CHARACTER:
       return { ...state, userCharacter: action?.payload };
     case LOGOUT_CHARACTER:
+      // eslint-disable-next-line no-return-assign,no-param-reassign
       return state = null;
     default:
       return state;

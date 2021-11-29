@@ -26,7 +26,7 @@ const FightLog = () => {
       <Grid item xs={2} className={classes.resultItem}><Typography>Round</Typography></Grid>
       <Grid item xs={10} className={classes.resultItem}><Typography>Log</Typography></Grid>
       <Divider sx={{ width: '100%', height: '5px', borderColor: '#531516' }} />
-      { fightLog?.roundLogs?.map((roundInfo, roundNumber) => <LogRow key={roundNumber} roundNumber={roundNumber} roundInfo={roundInfo} />)}
+      { fightLog?.roundLogs?.map((roundInfo) => <LogRow key={roundInfo.roundNumber} roundInfo={roundInfo} />)}
     </Grid>
   );
 };

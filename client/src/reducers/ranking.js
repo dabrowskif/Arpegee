@@ -20,6 +20,7 @@ const ranking = (state = {
     case GET_RANKING_CHARACTER:
       return { ...state, rankingCharacter: action?.data };
     case LOGOUT:
+      // eslint-disable-next-line no-return-assign,no-param-reassign
       return state = null;
     default:
       return state;

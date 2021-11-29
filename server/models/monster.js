@@ -29,10 +29,6 @@ const monsterSchema = mongoose.Schema({
     type: Number,
     required: true,
   },
-  /* lootCategory: {
-        type: Number,
-        required: true,
-    }, */
   characterId: {
     type: String,
     required: true,

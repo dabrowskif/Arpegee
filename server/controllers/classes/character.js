@@ -4,11 +4,12 @@ import {
     characterHealthpointsFormula,
     experienceRequiredForLevel,
     totalExperienceRequiredForLevel
-} from "../formulas/formulas.js";
-
-// TODO finish creating this class
+} from "../constants/formulas/formulas.js";
+import Item from "./item.js";
+import {BERSERKER, MAGE, WARRIOR} from "../constants/playerConstants.js";
 
 export default class Character {
+    _id;
     userId;
     nickname = '';
     vocation = '';
@@ -94,7 +95,7 @@ export default class Character {
     };
 
     addItemToBackpack(item) {
-        this.backpack.append(item);
+        this.backpack.push(item);
     };
     removeItemFromBackpack(itemId) {
         this.backpack.filter( item =>  item.id !== itemId);
@@ -102,18 +103,27 @@ export default class Character {
 
     setVocationStatistics = () => {
         switch (this.vocation) {
-            case 'warrior':
+            case WARRIOR:
                 return { strength: 10, dexterity: 0, intelligence: 0 };
-            case 'mage':
+            case MAGE:
                 return { strength: 0, dexterity: 0, intelligence: 10 };
-            case 'berserker':
+            case BERSERKER:
                 return { strength: 0, dexterity: 10, intelligence: 0 };
             default:
                 return { strength: 0, dexterity: 0, intelligence: 0 };
         }
     };
 
-
     equipItem() {};
     unequipItem() {};
+
+    generateItems = (numberOfItems) => {
+        const itemsLooted = [];
+        for (let i = 0; i < numberOfItems; i++) {
+            const newItem = new Item(this.level);
+            this.addItemToBackpack(newItem);
+            itemsLooted.push(newItem);
+        }
+        return itemsLooted;
+    }
 }

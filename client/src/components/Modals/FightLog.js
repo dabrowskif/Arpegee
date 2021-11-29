@@ -2,6 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+import Backpack from '../Character/Summary/Backpack/Backpack';
 
 export default function FightLogModal({ fightLog, open, handleClose }) {
   return (
@@ -43,6 +44,7 @@ export default function FightLogModal({ fightLog, open, handleClose }) {
                       : null}
                   </Typography>
                   <Typography sx={{ mt: 2 }}>Loot collected:</Typography>
+                  <Backpack items={fightLog?.lootedItems} maxHeight="101px" showItemModalOptions={false} />
                 </>
               )
               : (

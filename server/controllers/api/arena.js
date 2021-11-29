@@ -9,6 +9,7 @@ import {
 import { isIdValid } from './databaseFunctions/generic.js';
 import { dbGetCharacter, dbUpdateCharacter } from './databaseFunctions/character.js';
 import Character from '../classes/character.js';
+import Item from '../classes/item.js';
 
 // TODO think about usefulness of this function
 export const createMonster = async (req, res) => {
@@ -78,13 +79,12 @@ export const fightMonster = async (req, res) => {
 
     let monster = await dbGetMonster(monsterId);
     // const characterBeforeFight = await dbGetCharacter(monster.characterId);
-    const char = new Character(await dbGetCharacter(monster.characterId));
+    const character = new Character(await dbGetCharacter(monster.characterId));
 
-    const { characterAfterFight, fightLog } = fightCharacterVsMonster(char, monster);
+    const { characterAfterFight, fightLog } = fightCharacterVsMonster(character, monster);
 
     await dbRemoveMonster(monsterId);
     monster = await dbCreateMonster(Number(characterAfterFight.level), monster.characterId);
-    console.log(characterAfterFight);
 
     const updatedCharacter = await dbUpdateCharacter(characterAfterFight);
 

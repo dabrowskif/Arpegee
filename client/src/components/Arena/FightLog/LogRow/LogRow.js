@@ -4,16 +4,16 @@ import { Divider, Grid, Typography } from '@mui/material';
 
 import useStyles from './styles.js';
 
-const LogRow = ({ roundNumber, roundInfo }) => {
+const LogRow = ({ roundInfo }) => {
   const classes = useStyles();
 
   return (
     <Grid item xs={12} className={classes.logRow}>
       <Grid container>
-        <Grid item xs={2} backgroundColor={setBackgroundColor(roundNumber)}>
-          <Typography textAlign="center">{roundNumber}</Typography>
+        <Grid item xs={2} backgroundColor={setBackgroundColor(roundInfo.roundNumber)}>
+          <Typography textAlign="center">{roundInfo.roundNumber}</Typography>
         </Grid>
-        <Grid item xs={10} backgroundColor={setBackgroundColor(roundNumber)}>
+        <Grid item xs={10} backgroundColor={setBackgroundColor(roundInfo.roundNumber)}>
           <Typography textAlign="justify">{logOutput(roundInfo)}</Typography>
         </Grid>
         <Grid item xs={12} className={classes.divider}>

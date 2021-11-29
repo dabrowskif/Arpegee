@@ -7,6 +7,7 @@ const auth = (state = { authData: null }, action) => {
       return { ...state, authData: action?.data };
     case LOGOUT:
       localStorage.clear();
+      // eslint-disable-next-line no-return-assign,no-param-reassign
       return state = null;
     default:
       return state;

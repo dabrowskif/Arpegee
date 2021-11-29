@@ -12,6 +12,7 @@ import { useParams } from 'react-router-dom';
 import { increaseStat } from '../../../actions/characters.js';
 import InfoRow from './InfoRow.js';
 import useStyles from './styles.js';
+import Backpack from './Backpack/Backpack';
 
 const CharacterSummary = () => {
   const classes = useStyles();
@@ -137,6 +138,9 @@ const CharacterSummary = () => {
                           {' '}
                           Equipment
                         </Typography>
+                      </Grid>
+                      <Grid item xs={12}>
+                        <Backpack items={character.backpack} showItemModalOptions />
                       </Grid>
                     </Grid>
                   </Grid>
